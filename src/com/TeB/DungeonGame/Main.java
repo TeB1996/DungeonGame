@@ -12,7 +12,7 @@ public class Main extends JFrame {
 		Screen screen = new Screen();
 		setVisible(true);
 		setSize(width, height);
-		setTitle("DungeonMaster");
+		setTitle("Dungeon");
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -22,6 +22,7 @@ public class Main extends JFrame {
 		addKeyListener(new keyListener());
 		addMouseMotionListener(new mouseListener());
 		addMouseListener(new mouseListener());
+		
 	}
 
 	public static void main(String[] args) {

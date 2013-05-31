@@ -32,7 +32,6 @@ public class Explosion implements Runnable {
 		for (int i = 0; i < 5; i++) {
 			if(Block.getResistands(Load.Block[position + 60 + i]) < 5)Load.Block[position + 60 + i] = 0;
 			if(Block.getResistands(Load.Block[position - 60 - i]) < 5)Load.Block[position - 60 - i] = 0;
-			
 		}
 		for (int i = 0; i < 3; i++) {
 			if(Block.getResistands(Load.Block[position + 123 + i]) < 5)Load.Block[position + 123 + i] = 0;
@@ -40,7 +39,6 @@ public class Explosion implements Runnable {
 		}
 		for (int i = 0; i < 5; i++) {
 			if(Block.getResistands(Load.Block[position - 2 + i]) < 5)Load.Block[position - 2 + i] = 0;
-
 		}
 
 

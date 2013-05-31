@@ -10,11 +10,12 @@ public class Player {
 	private static int width = 14, height = 28;
 	private static int x = 6, y = 8, j = 0, speed = 2;
 
-	public static int itemInInventory = 6;
+	public static int itemInMainInventory = 3;
+	public static int itemsInInventory[] = {306,0,0,0,0,0,0,0,0,0};
 	public static boolean onPlatform = false;
 	public static int position = (((int) x) / 16) + (((y + height + 4 - 16) / 16 + 1) * 62 - 61);
 
-	private keyListener kl = new keyListener();;
+	private keyListener kl = new keyListener();
 
 	public Player() {
 
@@ -51,6 +52,7 @@ public class Player {
 		if (delta > 1) System.out.println("Delta: " + delta);
 		speed = 2;
 		position = (((int) x) / 16) + (((y + height + 4 - 16) / 16 + 1) * 62 - 61);
+		itemInMainInventory = itemsInInventory[0];
 
 	}
 	public void draw(Graphics g) {

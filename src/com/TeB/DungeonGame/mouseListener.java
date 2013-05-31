@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import com.TeB.Blocks.Block;
+import com.TeB.Items.Items;
 
 public class mouseListener implements MouseListener , MouseMotionListener{
 	
@@ -34,7 +35,10 @@ public class mouseListener implements MouseListener , MouseMotionListener{
 					return;
 				}
 				if(Block.getResistands(Load.Block[BlockId]) == 0){
-					Block.place(BlockId, Player.itemInInventory);
+					if(Items.isBlock(Player.itemInMainInventory)){
+						Block.place(BlockId, Player.itemInMainInventory-300);
+					}
+					System.out.println(Items.isBlock(Player.itemInMainInventory));
 				}
 			}
 			

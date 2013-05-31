@@ -10,7 +10,6 @@ public class Load {
 	public static String Sign[] = new String[100];
 	public static int SignBlock[] = {0};
 
-	@SuppressWarnings("unused")
 	public Load(String map) {
 
 		try {
@@ -55,21 +54,6 @@ public class Load {
 			e.printStackTrace();
 		}
 		
-		try {
-			Scanner s = new Scanner(new File(map + "Chests"));
-			boolean writeDownChest = false;
-			
-			int item = 0;
-			
-			while(s.hasNext()){
-				int next = s.nextInt();
-				
-				
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
 		//System.out.println(SignBlock[0]);
 	}
 

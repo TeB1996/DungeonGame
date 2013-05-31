@@ -17,6 +17,7 @@ public class Screen extends JPanel implements Runnable {
 	public static Player p = new Player();;
 	public static HUD h;
 	private static int delta;
+	//bug
 	
 	public Screen() {
 		m = new Map();
