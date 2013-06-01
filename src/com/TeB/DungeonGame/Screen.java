@@ -9,13 +9,11 @@ public class Screen extends JPanel implements Runnable {
 
 	public Thread thread = new Thread(this);
 
-	public static boolean isFirst = true;
-
 	public static int myWidth, myHeight;
 
 	public static Map m;
 	public static Player p = new Player();;
-	public static HUD h;
+	public static HUD h = new HUD();
 	private static int delta;
 	//bug
 	
@@ -25,7 +23,6 @@ public class Screen extends JPanel implements Runnable {
 	}
 
 	public void paintComponent(Graphics g) {
-		h = new HUD();
 
 		
 
@@ -44,12 +41,9 @@ public class Screen extends JPanel implements Runnable {
 		     oldTimeSinceStart = timeSinceStart;
 		     if(delta < 1)delta = 1;
 
-			if (!isFirst) {
-				break;
-
-			}
 			p.update(delta);
 			repaint();
+			
 			try {
 				Thread.sleep(sleepTime);
 			} catch (InterruptedException e) {

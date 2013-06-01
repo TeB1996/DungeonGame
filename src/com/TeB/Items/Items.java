@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 public class Items {
 	
 	public static String itemName [] = new String [100];
+	@SuppressWarnings("rawtypes")
 	private static Class items [] = {null,null,null,null,null,Tnt.class};
 	private static boolean isBlock= false;
 	
@@ -12,10 +13,11 @@ public class Items {
 		return isBlock;
 	}
 	@SuppressWarnings("unchecked")
-	public static boolean isBlock (int ItemId){
+	public static boolean getValue (int ItemId, String valueMethod){
 		
 			try {
-				return (Boolean) items[ItemId- 301].getMethod("isBlock", null).invoke(null, null);
+				if(ItemId > 300)return (Boolean) items[ItemId- 301].getMethod(valueMethod, null).invoke(null, null);
+				else return (Boolean) items[ItemId].getMethod(valueMethod, null).invoke(null, null);
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
 			} catch (InvocationTargetException e) {

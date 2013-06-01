@@ -26,7 +26,7 @@ public class mouseListener implements MouseListener , MouseMotionListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		int BlockId = (((int) x) / 16 - 1) + (((y + 4 - 32) / 16 + 1) * 62 - 61);
+		int BlockId = (((int) x) / 16 - 1) + (((y - 32) / 16 + 1) * 62 - 61);
 		if(e.getButton() == MouseEvent.BUTTON3){
 			if (Player.getWithinProximity(x, y)) {
 				if (Block.hasClickUse(Load.Block[BlockId])) {
@@ -35,10 +35,9 @@ public class mouseListener implements MouseListener , MouseMotionListener{
 					return;
 				}
 				if(Block.getResistands(Load.Block[BlockId]) == 0){
-					if(Items.isBlock(Player.itemInMainInventory)){
-						Block.place(BlockId, Player.itemInMainInventory-300);
+					if(Items.getValue(Player.itemsInInventory[0], "isBlock")){
+						Block.place(BlockId, Player.itemsInInventory[0]-300);
 					}
-					System.out.println(Items.isBlock(Player.itemInMainInventory));
 				}
 			}
 			

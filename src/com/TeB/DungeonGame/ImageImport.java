@@ -3,7 +3,7 @@ package com.TeB.DungeonGame;
 import java.awt.*;
 import javax.swing.*;
 
-public class BlockImageImport {
+public class ImageImport {
 
 	public Image brick;
 	public Image stone;
@@ -14,6 +14,7 @@ public class BlockImageImport {
 	public Image obsidian;
 	public Image sign;
 	public Image chest;
+	public static Image player;
 
 	public Image l1;
 	public Image l2;
@@ -21,7 +22,7 @@ public class BlockImageImport {
 	public Image l4;
 	public Image l5;
 
-	public BlockImageImport() {
+	public ImageImport() {
 
 		brick = new ImageIcon("res/brick.png").getImage();
 		stone = new ImageIcon("res/stone.png").getImage();
@@ -32,6 +33,7 @@ public class BlockImageImport {
 		obsidian = new ImageIcon("res/obsidian.png").getImage();
 		sign = new ImageIcon("res/sign.png").getImage();
 		chest = new ImageIcon("res/chest.png").getImage();
+		player = new ImageIcon("res/player.png").getImage();
 
 		l1 = new ImageIcon("res/light_level_1.png").getImage();
 		l2 = new ImageIcon("res/light_level_2.png").getImage();
