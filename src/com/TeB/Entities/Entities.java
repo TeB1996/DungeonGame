@@ -34,7 +34,6 @@ public class Entities {
 	public static void resetId(int Id){
 		System.out.println("Reseting: " + Id +" bulletAmount: " + bulletAmount);
 		bulletAmount--;
-		bullet[Id] = null;
 		bulletActivated[Id] = false;
 	}
 	

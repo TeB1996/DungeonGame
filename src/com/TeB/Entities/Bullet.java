@@ -15,28 +15,34 @@ public class Bullet {
 	private int direction = 0;
 	private int bulletTravelLength = 0;
 	private boolean run = false;
-	
-	public Bullet(int direction){
+
+	public Bullet(int direction) {
 		this.direction = direction;
 	}
 
 	public void update(int delta, int Id) {
-			if(!run){
-				x = Player.getX() + Player.getWidth();
-				y = Player.getY() + Player.getHeight()/2;
-				run = true;
-			}
-			if(direction == 2)x+=3;
-			if(direction == 4)x-=3;
-			bulletTravelLength++;
-			if(bulletTravelLength > 80&&bulletTravelLength % 20 == 0){
-				y++;
-			}
-			if(!Block.getBackgroundBlock(Load.Block[(((int) x) / 16 - 1) + (((y-32) / 16 + 1) * 62 - 61)]) || x > Main.width){
-				System.out.println("Block: " + Load.Block[(((int) x) / 16 - 1) + (((y - 32) / 16 + 1) * 62 - 61)] + " BlockId: " + ((((int) x) / 16 - 1) + (((y) / 16 + 1) * 62 - 61)));
-				Entities.resetId(Id);
-			}
-		
+		if (!run) {
+			x = Player.getX() + Player.getWidth();
+			y = Player.getY() + Player.getHeight() / 2;
+			run = true;
+		}
+
+		if (direction == 2) x += 3;
+		if (direction == 4) x -= 3;
+
+		bulletTravelLength++;
+
+		if (bulletTravelLength > 80 && bulletTravelLength % 20 == 0) y++;
+
+		if (!Block.getBackgroundBlock(Load.Block[(((int) x) / 16 - 1) + (((y) / 16 + 1) * 62 - 61)]) || x > Main.width || x < 0) {
+			System.out.println();
+			System.out.println("Block: " + Load.Block[(((int) x) / 16 - 1) + (((y) / 16 + 1) * 62 - 61)]
+					+ " BlockId: " + ((((int) x) / 16 - 1) + (((y) / 16 + 1) * 62 - 61)) + " Id: " + Id
+					+ " TravelLength: " + bulletTravelLength
+					+ " X: " + x + " Y: " + y);
+			Entities.resetId(Id);
+		}
+
 	}
 
 	public void draw(Graphics g) {
