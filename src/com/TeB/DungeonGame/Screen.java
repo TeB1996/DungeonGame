@@ -4,6 +4,8 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import com.TeB.Entities.Entities;
+
 @SuppressWarnings("serial")
 public class Screen extends JPanel implements Runnable {
 
@@ -11,13 +13,15 @@ public class Screen extends JPanel implements Runnable {
 
 	public static int myWidth, myHeight;
 
-	public static Map m;
-	public static Player p = new Player();;
-	public static HUD h = new HUD();
+	public Map m;
+	public Player p = new Player();;
+	public HUD h = new HUD();
+	public Entities ent;
 	private static int delta;
 	//bug
 	
 	public Screen() {
+		ent = new Entities();
 		m = new Map();
 		thread.start();
 	}
@@ -25,9 +29,10 @@ public class Screen extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 
 		
-
+		
 		m.draw(g);
 		p.draw(g);
+		ent.draw(g);
 		h.draw(g);
 	}
 
@@ -42,6 +47,7 @@ public class Screen extends JPanel implements Runnable {
 		     if(delta < 1)delta = 1;
 
 			p.update(delta);
+			ent.update(delta);
 			repaint();
 			
 			try {

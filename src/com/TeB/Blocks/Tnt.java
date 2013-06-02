@@ -6,6 +6,7 @@ public class Tnt extends Block{
 	
 	
 	static boolean blockHasPlaceUse = true;
+	static boolean backgroundBlock = true;
 	static boolean i = false;
 	
 	
@@ -15,6 +16,9 @@ public class Tnt extends Block{
 	
 	public static boolean blockHasPlaceUse() {
 		return blockHasPlaceUse;
+	}
+	public static boolean backgroundBlock(){
+		return backgroundBlock;
 	}
 	
 	

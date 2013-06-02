@@ -70,5 +70,18 @@ public class Player {
 
 		return false;
 	}
+	
+	public static int getX(){
+		return x;
+	}
+	public static int getY(){
+		return y;
+	}
+	public static int getWidth(){
+		return width;
+	}
+	public static int getHeight(){
+		return height;
+	}
 
 }

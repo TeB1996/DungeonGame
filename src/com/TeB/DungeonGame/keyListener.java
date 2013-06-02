@@ -3,6 +3,8 @@ package com.TeB.DungeonGame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import com.TeB.Entities.Entities;
+
 public class keyListener implements KeyListener {
 
 	public static boolean right = false, left = false, jump = false, place = false, running = false, use = false;
@@ -36,6 +38,12 @@ public class keyListener implements KeyListener {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			use = true;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_LEFT){
+			Entities.fireBullet(4);
+		}
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+			Entities.fireBullet(2);
 		}
 
 	}

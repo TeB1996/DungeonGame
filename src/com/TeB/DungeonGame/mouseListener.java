@@ -40,7 +40,7 @@ public class mouseListener implements MouseListener , MouseMotionListener{
 					}
 				}
 			}
-			
+			System.out.println(BlockId);
 			
 		}
 	}
