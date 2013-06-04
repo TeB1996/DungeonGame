@@ -12,7 +12,7 @@ public class Main extends JFrame {
 		Screen screen = new Screen();
 		setVisible(true);
 		setSize(width, height);
-		setTitle("Dungeon");
+		setTitle("Dungeon indev 0.1");
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);

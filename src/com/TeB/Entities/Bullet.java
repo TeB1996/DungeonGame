@@ -40,7 +40,10 @@ public class Bullet {
 					+ " BlockId: " + ((((int) x) / 16 - 1) + (((y) / 16 + 1) * 62 - 61)) + " Id: " + Id
 					+ " TravelLength: " + bulletTravelLength
 					+ " X: " + x + " Y: " + y);
-			Entities.resetId(Id);
+			Entities.resetBulletId(Id);
+		}
+		if(Entities.bulletHit(x,y,width,height)){
+			System.out.println("HIT!");
 		}
 
 	}
