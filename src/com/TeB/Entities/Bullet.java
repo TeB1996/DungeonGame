@@ -35,11 +35,11 @@ public class Bullet {
 		if (bulletTravelLength > 80 && bulletTravelLength % 20 == 0) y++;
 
 		if (!Block.getBackgroundBlock(Load.Block[(((int) x) / 16 - 1) + (((y) / 16 + 1) * 62 - 61)]) || x > Main.width || x < 0) {
-			System.out.println();
-			System.out.println("Block: " + Load.Block[(((int) x) / 16 - 1) + (((y) / 16 + 1) * 62 - 61)]
-					+ " BlockId: " + ((((int) x) / 16 - 1) + (((y) / 16 + 1) * 62 - 61)) + " Id: " + Id
-					+ " TravelLength: " + bulletTravelLength
-					+ " X: " + x + " Y: " + y);
+			//System.out.println();
+			//System.out.println("Block: " + Load.Block[(((int) x) / 16 - 1) + (((y) / 16 + 1) * 62 - 61)]
+			//		+ " BlockId: " + ((((int) x) / 16 - 1) + (((y) / 16 + 1) * 62 - 61)) + " Id: " + Id
+			//		+ " TravelLength: " + bulletTravelLength
+			//		+ " X: " + x + " Y: " + y);
 			Entities.resetBulletId(Id);
 		}
 		if(Entities.bulletHit(x,y,width,height)){

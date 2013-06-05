@@ -24,14 +24,12 @@ public class Entities {
 	public void update(int delta) {
 		if (bulletAmount >= 0) {
 			for (int i = 0; i < 99; i++) {
-				if (bulletActivated[i])
-					bullet[i].update(delta, i);
+				if (bulletActivated[i]) bullet[i].update(delta, i);
 			}
 		}
 
 		for (int i = 0; i < mobCount; i++) {
-			if (entActivated[i])
-				ent[i].update(delta, i);
+			if (entActivated[i]) ent[i].update(delta, i);
 		}
 
 	}
@@ -39,19 +37,16 @@ public class Entities {
 	public void draw(Graphics g) {
 		if (bulletAmount >= 0) {
 			for (int i = 0; i < 99; i++) {
-				if (bulletActivated[i])
-					bullet[i].draw(g);
+				if (bulletActivated[i]) bullet[i].draw(g);
 			}
 		}
 		for (int i = 0; i < mobCount; i++) {
-			if (entActivated[i])
-				ent[i].draw(g);
+			if (entActivated[i]) ent[i].draw(g);
 		}
 	}
 
 	public static void resetBulletId(int Id) {
-		System.out
-				.println("Reseting: " + Id + " bulletAmount: " + bulletAmount);
+		// System.out.println("Reseting: " + Id + " bulletAmount: " + bulletAmount);
 		bulletAmount--;
 		bulletActivated[Id] = false;
 	}
@@ -66,8 +61,7 @@ public class Entities {
 
 	public static boolean bulletHit(int x, int y, int width, int height) {
 		for (int i = 0; i < mobCount; i++) {
-			if (entActivated[i])
-				ent[i].checkHitbox(x,y,width,height);
+			if (entActivated[i]) ent[i].checkHitbox(x, y, width, height);
 		}
 		return false;
 	}
