@@ -19,7 +19,7 @@ public class Player {
 	}
 	@SuppressWarnings("static-access")
 	public void update(int delta) {
-		
+
 		int p1 = (((int) x + width) / 16 - 1) + (((y + 7) / 16 + 1) * 62 - 61);
 		int p2 = (((int) x - 1) / 16 - 1) + (((y + 7) / 16 + 1) * 62 - 61);
 
@@ -44,14 +44,13 @@ public class Player {
 
 		if (kl.running) speed = speed + 1;
 
-
 		if (p1 > 0 && p2 > 0) {
 			if (kl.right) if (Block.getBackgroundBlock(Load.Block[p1]) && Block.getBackgroundBlock(Load.Block[p1 + 62])) x += speed * delta;
 			if (kl.left) if (Block.getBackgroundBlock(Load.Block[p2]) && Block.getBackgroundBlock(Load.Block[p2 + 62])) x -= speed * delta;
 
 		}
 
-		if (delta > 1) System.out.println("Delta: " + delta);
+		// if (delta > 1) System.out.println("Delta: " + delta);
 
 		speed = 2;
 
@@ -70,17 +69,17 @@ public class Player {
 
 		return false;
 	}
-	
-	public static int getX(){
+
+	public static int getX() {
 		return x;
 	}
-	public static int getY(){
+	public static int getY() {
 		return y;
 	}
-	public static int getWidth(){
+	public static int getWidth() {
 		return width;
 	}
-	public static int getHeight(){
+	public static int getHeight() {
 		return height;
 	}
 

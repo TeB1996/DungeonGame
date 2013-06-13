@@ -17,7 +17,8 @@ public class Screen extends JPanel implements Runnable {
 	public Player p = new Player();;
 	public HUD h = new HUD();
 	public Entities ent;
-	private static int delta;
+	private static int delta = 1;
+	private boolean running = true;
 	//bug
 	
 	public Screen() {
@@ -37,25 +38,58 @@ public class Screen extends JPanel implements Runnable {
 	}
 
 	public void run() {
-		long oldTimeSinceStart = 0;
-		int sleepTime = 6;
-		while (true) {
-			
-			long timeSinceStart =  System.nanoTime();
-		    delta =  (int) ((int) timeSinceStart - oldTimeSinceStart)/1000000 - (sleepTime-1);
-		     oldTimeSinceStart = timeSinceStart;
-		     if(delta < 1)delta = 1;
+//		long oldTimeSinceStart = 0;
+//		int sleepTime = 6;
+//		while (true) {
+//			
+//			long timeSinceStart =  System.nanoTime();
+//		    delta =  (int) ((int) timeSinceStart - oldTimeSinceStart)/1000000 - (sleepTime-1);
+//		     oldTimeSinceStart = timeSinceStart;
+//		     if(delta < 1)delta = 1;
+//
+//			p.update(delta);
+//			ent.update(delta);
+//			repaint();
+//			
+//			try {
+//				Thread.sleep(sleepTime);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//		}
+		
+		int frames = 0;
+		double unProcessedSeconds = 0;
+		long previousTime = System.nanoTime();
+		double secondsPerTick = 1 / 60.0;
+		int tickCount = 0;
+		boolean ticked = false;
+		while (running) {
+			long currentTime = System.nanoTime();
+			long passedTime = currentTime - previousTime;
+			previousTime = currentTime;
+			unProcessedSeconds += passedTime / 1000000000.0;
 
-			p.update(delta);
-			ent.update(delta);
-			repaint();
-			
-			try {
-				Thread.sleep(sleepTime);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			while (unProcessedSeconds > secondsPerTick) {
+				unProcessedSeconds -= secondsPerTick;
+				ticked = true;
+				tickCount++;
+				if (tickCount % 1 == 0) {
+					System.out.println(frames + " FPS");
+					System.out.println("TickCount: " + tickCount);
+					p.update(delta);
+					ent.update(delta);
+					previousTime += 1000;
+					frames = 0;
+					tickCount = 0;
+				}
+			}
+			if (ticked) {
+				repaint();
+				frames++;
 			}
 		}
+
 	}
 
 }
