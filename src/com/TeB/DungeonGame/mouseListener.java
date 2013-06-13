@@ -26,7 +26,7 @@ public class mouseListener implements MouseListener , MouseMotionListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		int BlockId = (((int) x) / 16 - 1) + (((y - 32) / 16 + 1) * 62 - 61);
+		int BlockId = (((int) x) / 16 - 1) + (((y - 32) / 16 + 1) * (62*Load.mapLength) - (62*Load.mapLength - 1));
 		if(e.getButton() == MouseEvent.BUTTON3){
 			if (Player.getWithinProximity(x, y)) {
 				if (Block.hasClickUse(Load.Block[BlockId])) {

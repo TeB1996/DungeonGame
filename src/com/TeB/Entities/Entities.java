@@ -3,6 +3,8 @@ package com.TeB.Entities;
 import java.awt.Graphics;
 import java.util.Arrays;
 
+import com.TeB.DungeonGame.Load;
+
 public class Entities {
 
 	public static Bullet[] bullet = new Bullet[100];
@@ -11,6 +13,7 @@ public class Entities {
 	public static boolean[] entActivated = new boolean[10];
 	public static int bulletAmount = -1;
 	public static int mobCount = 3;
+	private int mapLength = Load.mapLength;
 
 	public Entities() {
 		Arrays.fill(bulletActivated, false);
@@ -24,12 +27,12 @@ public class Entities {
 	public void update(int delta) {
 		if (bulletAmount >= 0) {
 			for (int i = 0; i < 99; i++) {
-				if (bulletActivated[i]) bullet[i].update(delta, i);
+				if (bulletActivated[i]) bullet[i].update(delta, i, mapLength);
 			}
 		}
 
 		for (int i = 0; i < mobCount; i++) {
-			if (entActivated[i]) ent[i].update(delta, i);
+			if (entActivated[i]) ent[i].update(delta, i, mapLength);
 		}
 
 	}

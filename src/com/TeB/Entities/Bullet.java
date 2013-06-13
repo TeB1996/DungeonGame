@@ -20,7 +20,7 @@ public class Bullet {
 		this.direction = direction;
 	}
 
-	public void update(int delta, int Id) {
+	public void update(int delta, int Id, int mapLength) {
 		if (!run) {
 			x = Player.getX() + Player.getWidth();
 			y = Player.getY() + Player.getHeight() / 2;
@@ -34,7 +34,7 @@ public class Bullet {
 
 		if (bulletTravelLength > 80 && bulletTravelLength % 20 == 0) y++;
 
-		if (!Block.getBackgroundBlock(Load.Block[(((int) x) / 16 - 1) + (((y) / 16 + 1) * 62 - 61)]) || x > Main.width || x < 0) {
+		if (!Block.getBackgroundBlock(Load.Block[(((int) x) / 16 - 1) + (((y) / 16 + 1) * (62*mapLength) - (62*mapLength - 1))]) || x > Main.width || x < 0) {
 			//System.out.println();
 			//System.out.println("Block: " + Load.Block[(((int) x) / 16 - 1) + (((y) / 16 + 1) * 62 - 61)]
 			//		+ " BlockId: " + ((((int) x) / 16 - 1) + (((y) / 16 + 1) * 62 - 61)) + " Id: " + Id
