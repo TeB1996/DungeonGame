@@ -74,11 +74,11 @@ public class Screen extends JPanel implements Runnable {
 				unProcessedSeconds -= secondsPerTick;
 				ticked = true;
 				tickCount++;
-				if (tickCount % 1 == 0) {
-					//System.out.println(frames + " FPS");
-					//System.out.println("TickCount: " + tickCount);
-					p.update(delta);
-					ent.update(delta);
+				p.update(delta);
+				ent.update(delta);
+				if (tickCount % 60 == 0) {
+					System.out.println(frames + " FPS");
+					System.out.println("TickCount: " + tickCount);
 					previousTime += 1000;
 					frames = 0;
 					tickCount = 0;

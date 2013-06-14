@@ -19,6 +19,7 @@ public class Player {
 	}
 	@SuppressWarnings("static-access")
 	public void update(int delta) {
+		int xMovement = 0;
 		
 		if(Load.mapUpdate){
 			mapLength = Load.mapLength;
@@ -26,6 +27,7 @@ public class Player {
 		int adjustment = (62*mapLength);
 		int dadjustment = (62*mapLength - 1);
 		
+				
 		int p1 = (((int) x + width) / 16 - 1) + (((y + 7) / 16 + 1) * adjustment  - dadjustment);
 		int p2 = (((int) x - 1) / 16 - 1) + (((y + 7) / 16 + 1) * adjustment  - dadjustment);
 
@@ -51,11 +53,23 @@ public class Player {
 		if (kl.running) speed = speed + 1;
 
 		if (p1 > 0 && p2 > 0) {
-			if (kl.right) if (Block.getBackgroundBlock(Load.Block[p1]) && Block.getBackgroundBlock(Load.Block[p1 + adjustment])) x += speed * delta;
-			if (kl.left) if (Block.getBackgroundBlock(Load.Block[p2]) && Block.getBackgroundBlock(Load.Block[p2 + adjustment])) x -= speed * delta;
+			if (kl.right) if (Block.getBackgroundBlock(Load.Block[p1]) && Block.getBackgroundBlock(Load.Block[p1 + adjustment])){
+				x += speed * delta;
+				xMovement = 1;
+			}
+			if (kl.left) if (Block.getBackgroundBlock(Load.Block[p2]) && Block.getBackgroundBlock(Load.Block[p2 + adjustment])){
+				x -= speed * delta;
+				xMovement = 1;
+			}
 
 		}
-
+		if(x > Main.width/2 && Blocks.xOff < Main.width/16){
+			System.out.println(Blocks.xOff);
+			Blocks.xOff += xMovement;
+		}
+		if(x < Main.width/2 && Blocks.xOff > 0){
+			Blocks.xOff -= xMovement;
+		}
 		// if (delta > 1) System.out.println("Delta: " + delta);
 
 		speed = 2;
