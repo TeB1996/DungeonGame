@@ -5,19 +5,24 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import com.TeB.Blocks.Block;
+import com.TeB.DungeonGame.Blocks;
 import com.TeB.DungeonGame.Load;
 import com.TeB.DungeonGame.Player;
 
 public class Enemy1 {
 
+	private double scale = Load.mapScale;
+	private double xOffset = 0;
 	private int x = 30, y = 30;
-	private int width = 14, height = 28;
+	private int width = (int) (14*scale), height = (int) (28*scale);
 
+	@SuppressWarnings("unused")
 	private int direction = 0, speed = 2, j = 0;
 	private boolean run = false;
 	@SuppressWarnings("unused")
 	private boolean jump = false, onPlatform = false, running = false, right = false, left = false;
 	private Random rand = new Random();
+	@SuppressWarnings("unused")
 	private int pw = Player.getWidth(), ph = Player.getHeight();
 
 	public Enemy1(int direction) {
@@ -33,10 +38,17 @@ public class Enemy1 {
 		if (!running) speed = 1 + rand.nextInt(2);
 		int adjustment = (62*mapLength);
 		int dadjustment = (62*mapLength - 1);
-		int p1 = (((int) x + width) / 16 - 1) + (((y + 7) / 16 + 1) * adjustment  - dadjustment);
-		int p2 = (((int) x - 1) / 16 - 1) + (((y + 7) / 16 + 1) * adjustment  - dadjustment);
+		int blockSize = Blocks.blockSize;
+		double xOff = Blocks.xOff;
+		int p1 = (((int) x + width) / blockSize - 1) + (((y + 7) / blockSize + 1) * adjustment  - dadjustment);
+		int p2 = (((int) x - 1) / blockSize - 1) + (((y + 7) / blockSize + 1) * adjustment  - dadjustment);
 		int px = Player.getX();
 		int py = Player.getY();
+		
+		if(xOff != xOffset){
+			x += xOff-xOffset;
+			xOffset = xOff;
+		}
 
 		if (py == y) {
 			if (x < px) {
@@ -55,7 +67,7 @@ public class Enemy1 {
 		// System.out.println("PlayerY:" + py + " Enemy" + id + "Y: " + y);
 
 		if (jump) {
-			if (Block.getBackgroundBlock(Load.Block[(((int) x + 3) / 16 - 1) + (((y - 1) / 16 + 1) * adjustment  - dadjustment)]) && Block.getBackgroundBlock(Load.Block[(((int) x + width - 3) / 16 - 1) + (((y - 1) / 16 + 1) * adjustment  - dadjustment)])) y -= 2 * delta;
+			if (Block.getBackgroundBlock(Load.Block[(((int) x + 3) / blockSize - 1) + (((y - 1) / blockSize + 1) * adjustment  - dadjustment)]) && Block.getBackgroundBlock(Load.Block[(((int) x + width - 3) / blockSize - 1) + (((y - 1) / blockSize + 1) * adjustment  - dadjustment)])) y -= 2 * delta;
 			j += delta;
 			speed = 1;
 			if (j > 20) {
@@ -65,7 +77,7 @@ public class Enemy1 {
 		}
 
 		if (p1 > 0 && p1 < 3000) {
-			if (Block.getBackgroundBlock(Load.Block[(((int) x + 3) / 16 - 1) + (((y + height) / 16 + 1) * adjustment  - dadjustment)]) && Block.getBackgroundBlock(Load.Block[(((int) x + width - 3) / 16 - 1) + (((y + height) / 16 + 1) * adjustment  - dadjustment)]) && !jump && delta < 30) {
+			if (Block.getBackgroundBlock(Load.Block[(((int) x + 3) / blockSize - 1) + (((y + height) / blockSize + 1) * adjustment  - dadjustment)]) && Block.getBackgroundBlock(Load.Block[(((int) x + width - 3) / blockSize - 1) + (((y + height) / blockSize + 1) * adjustment  - dadjustment)]) && !jump && delta < 30) {
 				y += 2 * delta;
 				onPlatform = false;
 			} else onPlatform = true;

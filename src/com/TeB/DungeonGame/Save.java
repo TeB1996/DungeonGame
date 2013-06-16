@@ -19,7 +19,7 @@ public class Save implements Runnable {
 			for (int i = 0; i < Load.Block.length; i++) {
 				a++;
 				if (a != 1) f.format("%s", " ");
-				if (a == 62) {
+				if (a == 62*Load.mapLength) {
 					a = 0;
 					f.format("%s", Load.Block[i]);
 					f.format("\n", "");

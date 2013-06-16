@@ -10,6 +10,7 @@ public class Load {
 	public static String Sign[] = new String[100];
 	public static int SignBlock[] = {0};
 	public static int mapLength = 2;
+	public static double mapScale = 1.5;
 	public static boolean mapUpdate = false;
 
 	public Load(String map) {
@@ -19,10 +20,9 @@ public class Load {
 		try {
 			Scanner s = new Scanner(new File(map));
 
-			for (int g1 = 0; g1 <= 61 * 48 * mapLength; g1++) {
+			for (int g1 = 0; g1 <= 61 * 48 * mapLength; g1++) 
 				Block[g1] = s.nextInt();
-				System.out.println(g1);
-			}
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
