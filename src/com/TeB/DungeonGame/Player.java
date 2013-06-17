@@ -7,14 +7,14 @@ import com.TeB.Blocks.Block;
 public class Player {
 
 	private static int width = 14, height = 28;
-	private static int x = 6, dy = 8, y = 8, j = 0, speed = 2;
+	private static int x = 6, y = 8, j = 0, speed = 2;
 
 	public static int itemsInInventory[] = {306, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	public static boolean onPlatform = false;
 
 	private keyListener kl = new keyListener();
 	private int mapLength = Load.mapLength;
-	private double scale = Load.mapScale;
+	private static double scale = Load.mapScale;
 
 	public Player() {
 		width = (int) (14 * Load.mapScale);
@@ -32,28 +32,26 @@ public class Player {
 		int dadjustment = (62 * mapLength - 1);
 		int blockSize = Blocks.blockSize;
 
-		int p1 = ((((int) x - Blocks.getXOffset() + width) / blockSize - 1) + (int) xOffset) + (((y + 7) / blockSize + 1) * adjustment - dadjustment);
-		int p2 = ((((int) x - Blocks.getXOffset() - 1) / blockSize - 1) + (int) xOffset) + (((y + 7) / blockSize + 1) * adjustment - dadjustment);
+		int p1 = ((((int) x - Blocks.getXOffset() + width) / blockSize - 1) + (int) xOffset) + (((y + height/4) / blockSize + 1) * adjustment - dadjustment);
+		int p2 = ((((int) x - Blocks.getXOffset() ) / blockSize - 1) + (int) xOffset) + (((y + height/4) / blockSize + 1) * adjustment - dadjustment);
 
 		if (!kl.running) speed = 2;
 
 		if (kl.jump) {
-			if (Block.getBackgroundBlock(Load.Block[((((int) x + 3) / blockSize - 1) + (int) xOffset) + (((y - 1) / blockSize + 1) * adjustment - dadjustment)]) && Block.getBackgroundBlock(Load.Block[((((int) x + width - 3) / blockSize - 1) + (int) xOffset) + (((y - 1) / blockSize + 1) * adjustment - dadjustment)])) {
-				y -= 2 * delta;
-				dy -= 2 * delta;
-			}
+			if (Block.getBackgroundBlock(Load.Block[((((int) x ) / blockSize - 1) + (int) xOffset) + (((y - 1) / blockSize + 1) * adjustment - dadjustment)]) 
+					&& Block.getBackgroundBlock(Load.Block[((((int) x + width) / blockSize - 1) + (int) xOffset) + (((y - 1) / blockSize + 1) * adjustment - dadjustment)])) 
+						y -= 2 * delta;
+			
 			j += delta;
-			speed = 1;
-			if (j > 20) {
+			if (j > 30) {
 				kl.jump = false;
 				j = 0;
 			}
 		}
 
 		if (p1 > 0) {
-			if (Block.getBackgroundBlock(Load.Block[((((int) x + 3) / blockSize - 1) + (int) xOffset) + (((y + height) / blockSize + 1) * adjustment - dadjustment)]) && Block.getBackgroundBlock(Load.Block[((((int) x + width - 3) / blockSize - 1) + (int) xOffset) + (((y + height) / blockSize + 1) * adjustment - dadjustment)]) && !kl.jump && delta < 30) {
-				y += 2 * delta;
-				dy += 2 * delta;
+			if (Block.getBackgroundBlock(Load.Block[((((int) x + 4) / blockSize - 1) + (int) xOffset) + (((y + height) / blockSize + 1) * adjustment - dadjustment)]) && Block.getBackgroundBlock(Load.Block[((((int) x + width - 4) / blockSize - 1) + (int) xOffset) + (((y + height) / blockSize + 1) * adjustment - dadjustment)]) && !kl.jump && delta < 30) {
+				y += 3 * delta;
 				onPlatform = false;
 			} else onPlatform = true;
 		} else y += 3;
@@ -97,7 +95,7 @@ public class Player {
 
 	}
 	public void draw(Graphics g) {
-		g.drawImage(ImageImport.player, x, dy, width, height, null);
+		g.drawImage(ImageImport.player, x, y, width, height, null);
 	}
 
 	public static boolean getWithinProximity(int px, int py) {
@@ -106,7 +104,7 @@ public class Player {
 		// y));
 		// System.out.println("PX: " + px + " X: " + x + " px - x: " + (px -
 		// x));
-		if (px - x > -64*Load.mapScale && px - x < 64*Load.mapScale && py - y < 96*Load.mapScale && py - y > -16*Load.mapScale) return true;
+		if (px - x > -64*scale && px - x < 64*scale && py - y < 96*scale && py - y > -16*scale) return true;
 
 		return false;
 	}

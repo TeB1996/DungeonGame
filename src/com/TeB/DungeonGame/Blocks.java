@@ -40,9 +40,9 @@ public class Blocks extends Rectangle {
 		}
 
 		if (update) {
-			for (int py = 0; py <= (int)44/Load.mapScale; py++) {
+			for (int py = 0; py <= (int)44/Load.mapScale + 1; py++) {
 
-				for (int px = 0; px <= (int)61/Load.mapScale; px++) {
+				for (int px = 0; px <= (int)61/Load.mapScale + 1; px++) {
 
 					int id = px + (int) xOff + (py * 62 * Load.mapLength);
 

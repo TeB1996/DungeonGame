@@ -1,11 +1,16 @@
 package com.TeB.DungeonGame;
 
-import java.awt.*;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class ImageImport {
 
-	public Image brick;
+	public BufferedImage brick;
 	public Image stone;
 	public Image grass;
 	public Image dirt;
@@ -24,17 +29,21 @@ public class ImageImport {
 
 	public ImageImport() {
 
-		brick = new ImageIcon("res/brick.png").getImage();
-		stone = new ImageIcon("res/stone.png").getImage();
-		grass = new ImageIcon("res/grass.png").getImage();
-		dirt = new ImageIcon("res/dirt.png").getImage();
-		air = new ImageIcon("res/air.png").getImage();
-		tnt = new ImageIcon("res/tnt.png").getImage();
-		obsidian = new ImageIcon("res/obsidian.png").getImage();
-		sign = new ImageIcon("res/sign.png").getImage();
-		chest = new ImageIcon("res/chest.png").getImage();
-		player = new ImageIcon("res/player.png").getImage();
-
+		try {
+			brick =  ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/brick.png"));
+		stone = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/stone.png"));
+		grass = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/grass.png"));
+		dirt = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/dirt.png"));
+		air = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/air.png"));
+		tnt = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/tnt.png"));
+		obsidian = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/obsidian.png"));
+		sign = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/sign.png"));
+		chest = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/chest.png"));
+		player = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/player.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		l1 = new ImageIcon("res/light_level_1.png").getImage();
 		l2 = new ImageIcon("res/light_level_2.png").getImage();
 		l3 = new ImageIcon("res/light_level_3.png").getImage();
