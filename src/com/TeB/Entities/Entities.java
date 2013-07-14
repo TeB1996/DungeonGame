@@ -13,7 +13,7 @@ public class Entities {
 	public static boolean[] entActivated = new boolean[10];
 	public static int bulletAmount = -1;
 	public static int mobCount = 3;
-	private int mapLength = Load.mapLength;
+	private int mapLength = Load.mapWidth;
 
 	public Entities() {
 		Arrays.fill(bulletActivated, false);

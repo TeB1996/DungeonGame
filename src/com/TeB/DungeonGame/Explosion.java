@@ -5,7 +5,7 @@ import com.TeB.Blocks.Block;
 public class Explosion implements Runnable {
 
 	private Thread tnt = new Thread(this);
-	private int mapLength = Load.mapLength;
+	private int mapLength = Load.mapWidth;
 	private int position;
 
 	private boolean s = false;

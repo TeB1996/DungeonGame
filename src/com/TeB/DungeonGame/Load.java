@@ -9,18 +9,19 @@ public class Load {
 	public static int Block[];
 	public static String Sign[] = new String[100];
 	public static int SignBlock[] = {0};
-	public static int mapLength = 2;
-	public static double mapScale = 1.5;
+	public static int mapWidth = 2;
+	public static int mapHeight = 2;
+	public static double mapScale = 2;
 	public static boolean mapUpdate = false;
 
 	public Load(String map) {
 
-		Block = new int[61 * 48 * mapLength + 1];
+		Block = new int[Main.width/16 * Main.height/16 * mapWidth * mapHeight + 1];
 
 		try {
 			Scanner s = new Scanner(new File(map));
 
-			for (int g1 = 0; g1 <= 61 * 48 * mapLength; g1++) 
+			for (int g1 = 0; g1 <= Main.width/16* Main.height/16 * mapWidth * mapHeight; g1++) 
 				Block[g1] = s.nextInt();
 			
 		} catch (FileNotFoundException e) {

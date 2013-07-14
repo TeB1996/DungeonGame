@@ -30,16 +30,17 @@ public class ImageImport {
 	public ImageImport() {
 
 		try {
-			brick =  ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/brick.png"));
-		stone = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/stone.png"));
-		grass = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/grass.png"));
-		dirt = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/dirt.png"));
-		air = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/air.png"));
-		tnt = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/tnt.png"));
-		obsidian = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/obsidian.png"));
-		sign = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/sign.png"));
-		chest = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/chest.png"));
-		player = ImageIO.read(new File("C:/Users/tombal/Desktop/Nettside/NewTemplate/Applet/res/player.png"));
+			brick =  ImageIO.read(new File("res/brick.png"));
+		stone = ImageIO.read(new File("res/stone2.png"));
+		grass = ImageIO.read(new File("res/grass.png"));
+		dirt = ImageIO.read(new File("res/dirt.png"));
+		air = ImageIO.read(new File("res/air.png"));
+		tnt = ImageIO.read(new File("res/tnt.png"));
+		obsidian = ImageIO.read(new File("res/obsidian.png"));
+		sign = ImageIO.read(new File("res/sign.png"));
+		chest = ImageIO.read(new File("res/chest.png"));
+		player = ImageIO.read(new File("res/player.png"));
+		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

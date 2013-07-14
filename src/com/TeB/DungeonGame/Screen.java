@@ -19,8 +19,8 @@ public class Screen extends JPanel implements Runnable {
 	public Entities ent;
 	private static int delta = 1;
 	private boolean running = true;
-	//bug
-	
+	// bug
+
 	public Screen() {
 		ent = new Entities();
 		m = new Map();
@@ -29,8 +29,6 @@ public class Screen extends JPanel implements Runnable {
 
 	public void paintComponent(Graphics g) {
 
-		
-		
 		m.draw(g);
 		p.draw(g);
 		ent.draw(g);
@@ -38,26 +36,27 @@ public class Screen extends JPanel implements Runnable {
 	}
 
 	public void run() {
-//		long oldTimeSinceStart = 0;
-//		int sleepTime = 6;
-//		while (true) {
-//			
-//			long timeSinceStart =  System.nanoTime();
-//		    delta =  (int) ((int) timeSinceStart - oldTimeSinceStart)/1000000 - (sleepTime-1);
-//		     oldTimeSinceStart = timeSinceStart;
-//		     if(delta < 1)delta = 1;
-//
-//			p.update(delta);
-//			ent.update(delta);
-//			repaint();
-//			
-//			try {
-//				Thread.sleep(sleepTime);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//		}
-		
+		// long oldTimeSinceStart = 0;
+		// int sleepTime = 6;
+		// while (true) {
+		//
+		// long timeSinceStart = System.nanoTime();
+		// delta = (int) ((int) timeSinceStart - oldTimeSinceStart)/1000000 -
+		// (sleepTime-1);
+		// oldTimeSinceStart = timeSinceStart;
+		// if(delta < 1)delta = 1;
+		//
+		// p.update(delta);
+		// ent.update(delta);
+		// repaint();
+		//
+		// try {
+		// Thread.sleep(sleepTime);
+		// } catch (InterruptedException e) {
+		// e.printStackTrace();
+		// }
+		// }
+
 		int frames = 0;
 		double unProcessedSeconds = 0;
 		long previousTime = System.nanoTime();
@@ -74,9 +73,11 @@ public class Screen extends JPanel implements Runnable {
 				unProcessedSeconds -= secondsPerTick;
 				ticked = true;
 				tickCount++;
+
 				p.update(delta);
 				ent.update(delta);
-				if (tickCount % 60 == 0) {
+
+				if (tickCount % 30 == 0) {
 					System.out.println(frames + " FPS");
 					System.out.println("TickCount: " + tickCount);
 					previousTime += 1000;
