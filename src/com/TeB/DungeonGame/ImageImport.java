@@ -31,7 +31,7 @@ public class ImageImport {
 
 		try {
 			brick =  ImageIO.read(new File("res/brick.png"));
-		stone = ImageIO.read(new File("res/stone2.png"));
+		stone = ImageIO.read(new File("res/stone.png"));
 		grass = ImageIO.read(new File("res/grass.png"));
 		dirt = ImageIO.read(new File("res/dirt.png"));
 		air = ImageIO.read(new File("res/air.png"));

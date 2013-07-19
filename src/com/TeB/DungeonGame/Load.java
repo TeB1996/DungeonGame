@@ -21,7 +21,7 @@ public class Load {
 		try {
 			Scanner s = new Scanner(new File(map));
 
-			for (int g1 = 0; g1 <= Main.width/16* Main.height/16 * mapWidth * mapHeight; g1++) 
+			for (int g1 = 0; g1 <= Main.width/16* Main.height/16 * mapWidth; g1++) 
 				Block[g1] = s.nextInt();
 			
 		} catch (FileNotFoundException e) {

@@ -2,8 +2,7 @@ package com.TeB.DungeonGame;
 
 import java.awt.*;
 
-@SuppressWarnings("serial")
-public class Blocks extends Rectangle {
+public class Blocks {
 
 	public Load l;
 	public Save s;
@@ -19,15 +18,19 @@ public class Blocks extends Rectangle {
 	public static boolean update = true;
 
 	public Blocks(String map) {
-
+		blockSize = (int) (16*Load.mapScale);
 		l = new Load(map);
 	}
 
 	public void draw(Graphics g) {
 		int width = (int) (16*Load.mapScale), height = width;
 		int x = width, y = width;
+		
+		int bDrawWidth = (int) ((Main.width/16)/Load.mapScale);
+		int bDrawHeight = (int)((Main.width/16)/Load.mapScale);
+		
 		blockSize = (int) (16*Load.mapScale);
-		int mapLength = Load.mapLength;
+		int mapLength = Load.mapWidth;
 		ImageImport ii = new ImageImport();
 
 		if (xOffset % 15 <= 0.01) {
@@ -35,16 +38,19 @@ public class Blocks extends Rectangle {
 			xOffset = 0;
 		}
 		if (xOff > 0.01) {
-			xOffset = (int) ((xOff - (int) xOff) * 16);
+			int i = 0;
+			if(xOff < 10) i = Integer.valueOf(Double.toString(xOff).substring(0, 1));
+			if(xOff >= 10) i = Integer.valueOf(Double.toString(xOff).substring(0, 2));
+			xOffset = (int) ((xOff - i) * 16);
 			xOffset = -xOffset;
 		}
 
 		if (update) {
-			for (int py = 0; py <= (int)44/Load.mapScale + 1; py++) {
+			for (int py = 0; py <= bDrawHeight + 1; py++) {
 
-				for (int px = 0; px <= (int)61/Load.mapScale + 1; px++) {
+				for (int px = 0; px <= bDrawWidth + 1; px++) {
 
-					int id = px + (int) xOff + (py * 62 * Load.mapLength);
+					int id = px + (int) xOff + (py * 62 * Load.mapWidth);
 
 					if ((id <= 2808 * mapLength)) {
 						int bId = Load.Block[id];
