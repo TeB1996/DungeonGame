@@ -14,12 +14,14 @@ public class ImageImport {
 	public Image stone;
 	public Image grass;
 	public Image dirt;
-	public Image air;
 	public Image tnt;
 	public Image obsidian;
 	public Image sign;
 	public Image chest;
 	public static Image player;
+	
+	public Image airBg;
+	
 
 	public Image l1;
 	public Image l2;
@@ -30,16 +32,16 @@ public class ImageImport {
 	public ImageImport() {
 
 		try {
-			brick =  ImageIO.read(new File("res/brick.png"));
-		stone = ImageIO.read(new File("res/stone.png"));
-		grass = ImageIO.read(new File("res/grass.png"));
-		dirt = ImageIO.read(new File("res/dirt.png"));
-		air = ImageIO.read(new File("res/air.png"));
-		tnt = ImageIO.read(new File("res/tnt.png"));
-		obsidian = ImageIO.read(new File("res/obsidian.png"));
-		sign = ImageIO.read(new File("res/sign.png"));
-		chest = ImageIO.read(new File("res/chest.png"));
-		player = ImageIO.read(new File("res/player.png"));
+			brick =  ImageIO.read(new File("blocks/brick.png"));
+			stone = ImageIO.read(new File("blocks/stone.png"));
+			grass = ImageIO.read(new File("blocks/grass.png"));
+			dirt = ImageIO.read(new File("blocks/dirt.png"));
+			airBg = ImageIO.read(new File("MapBG/air.png"));
+			tnt = ImageIO.read(new File("blocks/tnt.png"));
+			obsidian = ImageIO.read(new File("blocks/obsidian.png"));
+			sign = ImageIO.read(new File("blocks/sign.png"));
+			chest = ImageIO.read(new File("blocks/chest.png"));
+			player = ImageIO.read(new File("chars/player.png"));
 		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

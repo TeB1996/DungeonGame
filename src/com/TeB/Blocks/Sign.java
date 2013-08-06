@@ -7,16 +7,16 @@ public class Sign extends Block{
 	static boolean backgroundBlock = true;
 	static boolean hasClickUse = true;
 	
-	public static boolean backgroundBlock(){
+	public boolean backgroundBlock(){
 		return backgroundBlock;
 	}
 	
-	public static boolean hasClickUse(){
+	public boolean hasClickUse(){
 		return hasClickUse;
 	}
 	
 	
-	public static void ClickUse(int BlockId){
+	public void ClickUse(int BlockId){
 		
 		for(int i= 0; i < Load.SignBlock.length;i++){
 			if(Load.SignBlock[i] == BlockId){

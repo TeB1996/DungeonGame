@@ -7,29 +7,45 @@ import java.util.Scanner;
 public class Load {
 
 	public static int Block[];
+	public static int BlockLight[];
 	public static String Sign[] = new String[100];
 	public static int SignBlock[] = {0};
-	public static int mapWidth = 2;
-	public static int mapHeight = 2;
-	public static double mapScale = 2;
+	public static int mapWidth = 1;
+	public static int mapHeight = 1;
+	public static double mapScale = 1;
+	public static int spawnBlockX = 4;
+	public static int spawnBlockY = 4;
+	public static int chunkWidth = 998/16, chunkHeight = ((998/12)*9)/16;
 	public static boolean mapUpdate = false;
+	public static String mapBG = "air";
 
 	public Load(String map) {
-
-		Block = new int[Main.width/16 * Main.height/16 * mapWidth * mapHeight + 1];
-
 		try {
-			Scanner s = new Scanner(new File(map));
+			Scanner s = new Scanner(new File("maps/" + map + "/" + map + "Info"));
+			
+			mapWidth = s.nextInt();
+			mapHeight = s.nextInt();
+			mapScale = s.nextDouble();
+			spawnBlockX = s.nextInt();
+			spawnBlockY = s.nextInt();
+			
+			s = new Scanner(new File("maps/" + map + "/" + map));
+			
+			Block = new int[chunkWidth * chunkHeight * mapWidth * mapHeight + 1];
 
-			for (int g1 = 0; g1 <= Main.width/16* Main.height/16 * mapWidth; g1++) 
+			for (int g1 = 0; g1 <= chunkWidth* chunkHeight * mapWidth* mapHeight; g1++) 
 				Block[g1] = s.nextInt();
 			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+			s = new Scanner(new File("maps/" + map + "/" + map + "Light"));
+			
+			BlockLight = new int[chunkWidth * chunkHeight * mapWidth * mapHeight + 1];
 
-		try {
-			Scanner s = new Scanner(new File(map + "Signs"));
+			for (int g1 = 0; g1 <= chunkWidth* chunkHeight * mapWidth* mapHeight; g1++) 
+				BlockLight[g1] = 0;
+				//BlockLight[g1] = s.nextInt();
+			
+
+			s = new Scanner(new File("maps/" + map + "/" + map + "Signs"));
 			boolean writeDown = false;
 
 			String sentence = "";

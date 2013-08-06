@@ -6,13 +6,17 @@ import java.awt.event.ComponentListener;
 
 import javax.swing.*;
 
-@SuppressWarnings("serial")
 public class Main extends JFrame {
 
+	private static final long serialVersionUID = -3862751776966360402L;
+	
 	public static int width = 998, height = width / 12 * 9;
 	public static boolean running = false;
+	
 	public Main() {
+
 		if (!running) {
+			keyListener.replay[0] = null;
 			init();
 			running = true;
 		}

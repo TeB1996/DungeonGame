@@ -1,38 +1,40 @@
 package com.TeB.DungeonGame;
 
 import java.awt.*;
-
 import javax.swing.*;
 
-import com.TeB.Entities.Entities;
-
-@SuppressWarnings("serial")
 public class Screen extends JPanel implements Runnable {
+
+	private static final long serialVersionUID = 1L;
 
 	public Thread thread = new Thread(this);
 
-	public static int myWidth, myHeight;
-
 	public Map m;
-	public Player p = new Player();;
-	public HUD h = new HUD();
-	public Entities ent;
+	public Player p;
+	public HUD h;
+	public keyListener kl;
 	private static int delta = 1;
 	private boolean running = true;
+
 	// bug
 
 	public Screen() {
-		ent = new Entities();
 		m = new Map();
+		p = new Player();
+		h = new HUD();
+		kl = new keyListener();
+		new ImageImport();
 		thread.start();
 	}
 
 	public void paintComponent(Graphics g) {
-
-		m.draw(g);
-		p.draw(g);
-		ent.draw(g);
-		h.draw(g);
+		g.setFont(new Font("TechnoHideo.ttf", (int) (16 * Load.mapScale),
+				(int) (16 * Load.mapScale)));
+		m.draw((Graphics2D) g);
+		p.draw((Graphics2D) g);
+		h.draw((Graphics2D) g);
+		// System.out.println(g.getFont());
+		g.drawString("Font", 100, 100);
 	}
 
 	public void run() {
@@ -61,8 +63,9 @@ public class Screen extends JPanel implements Runnable {
 		double unProcessedSeconds = 0;
 		long previousTime = System.nanoTime();
 		double secondsPerTick = 1 / 60.0;
+		//double secondsPerRender = 1 / 20.0;
 		int tickCount = 0;
-		boolean ticked = false;
+		//boolean ticked = false;
 		while (running) {
 			long currentTime = System.nanoTime();
 			long passedTime = currentTime - previousTime;
@@ -71,24 +74,31 @@ public class Screen extends JPanel implements Runnable {
 
 			while (unProcessedSeconds > secondsPerTick) {
 				unProcessedSeconds -= secondsPerTick;
-				ticked = true;
+				//ticked = true;
 				tickCount++;
 
+				
+				if(keyListener.startReplay && keyListener.replayNumber > keyListener.replayUpdateNumber){
+					kl.keyPressed(keyListener.replay[keyListener.replayUpdateNumber]);
+					keyListener.replayUpdateNumber += 1;
+					System.out.println(keyListener.replayNumber);
+					System.out.println("Helloooo");
+				}
 				p.update(delta);
-				ent.update(delta);
 
 				if (tickCount % 60 == 0) {
-					System.out.println(frames + " FPS");
+					System.out.println("FPS: " + frames);
 					System.out.println("TickCount: " + tickCount);
 					previousTime += 1000;
 					frames = 0;
 					tickCount = 0;
 				}
 			}
-			if (ticked) {
+			if (true) {
 				repaint();
 				frames++;
 			}
+
 		}
 
 	}

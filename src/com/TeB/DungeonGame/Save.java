@@ -14,7 +14,7 @@ public class Save implements Runnable {
 		IconLoop.start();
 
 		try {
-			Formatter f = new Formatter(map);
+			Formatter f = new Formatter("maps/" + map + "/" + map);
 
 			for (int i = 0; i < Load.Block.length; i++) {
 				a++;

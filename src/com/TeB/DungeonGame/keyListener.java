@@ -3,14 +3,36 @@ package com.TeB.DungeonGame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import com.TeB.Entities.Entities;
-
 public class keyListener implements KeyListener {
 
 	public static boolean right = false, left = false, jump = false, place = false, running = false, use = false;
 
+	public static boolean startReplay = false;
+	
+	public static KeyEvent[] replay = new KeyEvent[100000];
+	
+	public static int replayUpdateNumber = 1, replayNumber = 1;
+	
+	
 	public void keyPressed(KeyEvent e) {
-
+		
+		if(!startReplay){
+			replay[replayNumber] = e;
+			replayNumber++;
+		}
+		
+		System.out.println(replay[replayNumber-1].getKeyCode());
+		
+		if(e.getKeyCode() == KeyEvent.VK_R){
+			//Replaying last motions
+			if(startReplay)startReplay = false;
+			if(!startReplay)startReplay = true;
+			System.out.println(startReplay);
+			System.out.println(replay[replayNumber-1].getKeyChar());
+			
+			
+		}
+		
 		if (e.getKeyCode() == KeyEvent.VK_D) {
 			right = true;
 		}
@@ -39,16 +61,24 @@ public class keyListener implements KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			use = true;
 		}
+		if(e.getKeyCode() == KeyEvent.VK_UP){
+			Player.attributeActivated[0] = true;
+		}
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){
-			Entities.fireBullet(4);
+			Player.attributeActivated[1] = true;
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			Entities.fireBullet(2);
+			Player.attributeActivated[1] = true;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_DOWN){
+			Player.attributeActivated[2] = true;
 		}
 
 	}
 
 	public void keyReleased(KeyEvent e) {
+		
+		replay[replay.length - 1] = e;
 
 		if (e.getKeyCode() == KeyEvent.VK_D) {
 			right = false;

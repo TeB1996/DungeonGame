@@ -13,15 +13,15 @@ public class Chest extends Block {
 	static boolean backgroundBlock = true;
 	static boolean hasClickUse = true;
 
-	public static boolean backgroundBlock() {
+	public boolean backgroundBlock() {
 		return backgroundBlock;
 	}
 
-	public static boolean hasClickUse() {
+	public boolean hasClickUse() {
 		return hasClickUse;
 	}
 
-	public static void ClickUse(int BlockId) {
+	public void ClickUse(int BlockId) {
 		chestAt(BlockId);
 		// System.out.println(openChest[0]);
 	}

@@ -1,6 +1,7 @@
 package com.TeB.Blocks;
 
 import com.TeB.DungeonGame.Explosion;
+import com.TeB.DungeonGame.Load;
 
 public class Tnt extends Block{
 	
@@ -10,14 +11,15 @@ public class Tnt extends Block{
 	static boolean i = false;
 	
 	
-	public static void placeUs(int BlockPlacementId){
+	public  void placeUs(int BlockPlacementId){
+		Load.Block[BlockPlacementId] = 6;
 		new Explosion(BlockPlacementId);
 	}
 	
-	public static boolean blockHasPlaceUse() {
+	public  boolean blockHasPlaceUse() {
 		return blockHasPlaceUse;
 	}
-	public static boolean backgroundBlock(){
+	public  boolean backgroundBlock(){
 		return backgroundBlock;
 	}
 	

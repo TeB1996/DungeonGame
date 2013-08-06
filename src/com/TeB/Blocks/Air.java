@@ -5,11 +5,11 @@ public class Air extends Block{
 	static int resistands = 0;
 	static boolean backgroundBlock = true;
 	
-	public static boolean backgroundBlock(){
+	public boolean backgroundBlock(){
 		return backgroundBlock;
 	}
 	
-	public static int getResistands(){
+	public  int getResistands(){
 		return resistands;
 	}
 

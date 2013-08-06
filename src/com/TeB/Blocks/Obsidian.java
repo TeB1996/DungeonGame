@@ -4,7 +4,7 @@ public class Obsidian extends Block{
 	
 	static int resistands = 9;
 	
-	public static int getResistands(){
+	public int getResistands(){
 		return resistands;
 	}
 
