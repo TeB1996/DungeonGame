@@ -41,7 +41,7 @@ public class ImageImport {
 			obsidian = ImageIO.read(new File("blocks/obsidian.png"));
 			sign = ImageIO.read(new File("blocks/sign.png"));
 			chest = ImageIO.read(new File("blocks/chest.png"));
-			player = ImageIO.read(new File("chars/player.png"));
+			player = ImageIO.read(new File("chars/heatblast.png"));
 		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

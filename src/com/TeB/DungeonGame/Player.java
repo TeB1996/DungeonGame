@@ -5,6 +5,7 @@ import java.awt.Image;
 
 import com.TeB.Attributes.*;
 import com.TeB.Blocks.Block;
+import com.TeB.Characters.Characters;
 
 public class Player {
 
@@ -17,26 +18,27 @@ public class Player {
 	private static double zSize;
 
 	public static int[] points = new int[12];
-	private Image characterImage = ImageImport.player;
 	private keyListener kl = new keyListener();
+	private Image playerSprite;
 
 	public static Attributes[] attributes = new Attributes[10];
 	public static boolean[] attributeActivated = new boolean[10];
 
-	public Player() {
-		new ImageImport();
+	public Player(Characters character) {
+		playerSprite = character.getCharacterImage();
 		zSize = Load.mapScale;
-		characterImage = ImageImport.player;
+		width = (int) (character.getWidth() * zSize);
+		height = (int) (character.getHeight() * zSize);
 		dx = Main.width / 2 - width / 2;
 		dy = Main.height / 2 - height / 2;
 		y = 0;
 		x = 0;
-		characterImage = ImageImport.player;
 
 		attributes[0] = new JumpBoost();
 		attributes[1] = new Shards();
 		attributes[2] = new Dig();
 		attributes[3] = new Shield();
+		
 
 		int spawnBlockX = Load.spawnBlockX;
 		int spawnBlockY = Load.spawnBlockY;
@@ -59,8 +61,7 @@ public class Player {
 		blockSize = (int) (16 * zSize);
 		mapWidth = Load.chunkWidth * Load.mapWidth;
 		maxJumpHeight = (int) (blockSize * 2 / zSize);
-		width = (int) (12 * zSize);
-		height = (int) (28 * zSize);
+		
 
 		points[0] = (int) ((-x + 2 + dx) / blockSize)
 				+ (int) ((-y + dy) / blockSize) * mapWidth;
@@ -71,13 +72,13 @@ public class Player {
 		points[3] = (int) ((-x + width - 2 + dx) / blockSize)
 				+ (int) ((-y + dy + height + 1) / blockSize) * mapWidth;
 		points[4] = (int) ((-x + dx - 1) / blockSize)
-				+ (int) ((-y + dy) / blockSize) * mapWidth;
+				+ (int) ((-y + 1 + dy) / blockSize) * mapWidth;
 		points[5] = (int) ((-x + dx - 1) / blockSize)
 				+ (int) ((-y + height / 2 + dy) / blockSize) * mapWidth;
 		points[6] = (int) ((-x + dx - 1) / blockSize)
 				+ (int) ((-y + height + dy) / blockSize) * mapWidth;
 		points[7] = (int) ((-x + dx + 1 + width) / blockSize)
-				+ (int) ((-y + dy) / blockSize) * mapWidth;
+				+ (int) ((-y + dy + 1) / blockSize) * mapWidth;
 		points[8] = (int) ((-x + dx + 1 + width) / blockSize)
 				+ (int) ((-y + +height / 2 + dy) / blockSize) * mapWidth;
 		points[9] = (int) ((-x + dx + 1 + width) / blockSize)
@@ -174,7 +175,7 @@ public class Player {
 
 	public void draw(Graphics2D g) {
 		// g.rotate(90.0);
-		g.drawImage(characterImage, dx, dy, width, height, null);
+		g.drawImage(playerSprite, dx, dy, width, height, null);
 		g.drawRect(dx, dy, width, height);
 
 		for (int i = 0; i < attributeActivated.length - 1; i++)

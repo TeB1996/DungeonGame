@@ -2,6 +2,8 @@ package com.TeB.DungeonGame;
 
 import java.awt.*;
 
+import com.TeB.Characters.Crystalith;
+
 public class Map {
 
 	private BlockRender b;
@@ -22,7 +24,7 @@ public class Map {
 		new Load (newMap);
 		MapInUse = newMap;
 		b = new BlockRender(MapInUse);
-		new Player();
+		new Player(new Crystalith());
 	}
 
 	public String getMap() {

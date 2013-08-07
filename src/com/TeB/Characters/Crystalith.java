@@ -5,19 +5,18 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class HeatBlast extends Characters{
+public class Crystalith extends Characters{
 	
-	public HeatBlast(){
+	public Crystalith(){
+		
 		try {
-			CharacterImage = ImageIO.read(new File("Chars/heatblast.png"));
-			width = 6;
-			height = 32;
-			
-			
-			
+			CharacterImage = ImageIO.read(new File("Chars/player.png"));
+			width = 12;
+			height = 28;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 }

@@ -3,6 +3,8 @@ package com.TeB.DungeonGame;
 import java.awt.*;
 import javax.swing.*;
 
+import com.TeB.Characters.*;
+
 public class Screen extends JPanel implements Runnable {
 
 	private static final long serialVersionUID = 1L;
@@ -10,6 +12,7 @@ public class Screen extends JPanel implements Runnable {
 	public Thread thread = new Thread(this);
 
 	public Map m;
+	public Replay replay;
 	public Player p;
 	public HUD h;
 	public keyListener kl;
@@ -20,7 +23,8 @@ public class Screen extends JPanel implements Runnable {
 
 	public Screen() {
 		m = new Map();
-		p = new Player();
+		replay = new Replay();
+		p = new Player(new Crystalith());
 		h = new HUD();
 		kl = new keyListener();
 		new ImageImport();
@@ -77,13 +81,7 @@ public class Screen extends JPanel implements Runnable {
 				//ticked = true;
 				tickCount++;
 
-				
-				if(keyListener.startReplay && keyListener.replayNumber > keyListener.replayUpdateNumber){
-					kl.keyPressed(keyListener.replay[keyListener.replayUpdateNumber]);
-					keyListener.replayUpdateNumber += 1;
-					System.out.println(keyListener.replayNumber);
-					System.out.println("Helloooo");
-				}
+				replay.update(delta);
 				p.update(delta);
 
 				if (tickCount % 60 == 0) {
