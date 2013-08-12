@@ -50,7 +50,7 @@ public class BlockRender {
 	public void draw(Graphics2D g) {
 		blockSize = (int) (16 * Load.mapScale);
 		int x = blockWidth, y = blockHeight;
-		int xOff = Player.getX(), yOff = Player.getY();
+		int xOff = Camera.getX(), yOff = Camera.getY();
 
 		blockWidth = (int) (16 * Load.mapScale);
 		blockHeight = (int) (16 * Load.mapScale);

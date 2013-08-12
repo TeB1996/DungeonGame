@@ -1,6 +1,8 @@
 package com.TeB.DungeonGame;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+
 import javax.swing.*;
 
 import com.TeB.Characters.*;
@@ -15,6 +17,7 @@ public class Screen extends JPanel implements Runnable {
 	public Replay replay;
 	public Player p;
 	public HUD h;
+	public Camera c;
 	public keyListener kl;
 	private static int delta = 1;
 	private boolean running = true;
@@ -27,18 +30,18 @@ public class Screen extends JPanel implements Runnable {
 		p = new Player(new Crystalith());
 		h = new HUD();
 		kl = new keyListener();
+		c = new Camera();
 		new ImageImport();
 		thread.start();
 	}
 
 	public void paintComponent(Graphics g) {
-		g.setFont(new Font("TechnoHideo.ttf", (int) (16 * Load.mapScale),
-				(int) (16 * Load.mapScale)));
-		m.draw((Graphics2D) g);
-		p.draw((Graphics2D) g);
-		h.draw((Graphics2D) g);
-		// System.out.println(g.getFont());
-		g.drawString("Font", 100, 100);
+		BufferedImage image = new BufferedImage(Main.width, Main.height, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = (Graphics2D) image.getGraphics();
+		m.draw(g2);
+		p.draw(g2);
+		h.draw(g2);
+		g.drawImage(image, 0, 0, getWidth(), getHeight(),null);
 	}
 
 	public void run() {
@@ -71,6 +74,7 @@ public class Screen extends JPanel implements Runnable {
 		int tickCount = 0;
 		//boolean ticked = false;
 		while (running) {
+			boolean ticked = false;
 			long currentTime = System.nanoTime();
 			long passedTime = currentTime - previousTime;
 			previousTime = currentTime;
@@ -78,11 +82,12 @@ public class Screen extends JPanel implements Runnable {
 
 			while (unProcessedSeconds > secondsPerTick) {
 				unProcessedSeconds -= secondsPerTick;
-				//ticked = true;
+				ticked = true;
 				tickCount++;
 
 				replay.update(delta);
 				p.update(delta);
+				c.update(delta);
 
 				if (tickCount % 60 == 0) {
 					System.out.println("FPS: " + frames);
@@ -92,7 +97,7 @@ public class Screen extends JPanel implements Runnable {
 					tickCount = 0;
 				}
 			}
-			if (true) {
+			if (ticked) {
 				repaint();
 				frames++;
 			}

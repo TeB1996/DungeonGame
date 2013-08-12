@@ -21,7 +21,7 @@ public class keyListener implements KeyListener {
 			replayNumber++;
 		}
 		
-		System.out.println(replay[replayNumber-1].getKeyCode());
+		//System.out.println(replay[replayNumber-1].getKeyCode());
 		
 		if(e.getKeyCode() == KeyEvent.VK_R){
 			//Replaying last motions

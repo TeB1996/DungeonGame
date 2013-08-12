@@ -29,8 +29,8 @@ public class mouseListener implements MouseListener, MouseMotionListener {
 		int blockSize = BlockRender.blockSize;
 		int mapWidth = BlockRender.mapWidth;
 
-		int BlockId =  ((x - 10 - Player.getX()) / blockSize)
-				+ ( ((y - 30  - Player.getY()) / blockSize) * mapWidth);
+		int BlockId =  ((x - 10 - Camera.getX()) / blockSize)
+				+ ( ((y - 30  - Camera.getY()) / blockSize) * mapWidth);
 		
 		Block block = Block.getBlockById(Load.Block[BlockId]);
 		if (e.getButton() == MouseEvent.BUTTON3) {

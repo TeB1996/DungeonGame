@@ -7,14 +7,9 @@ import com.TeB.Attributes.*;
 import com.TeB.Blocks.Block;
 import com.TeB.Characters.Characters;
 
-public class Player {
+public class Player extends Entity {
 
 	public static boolean onPlatform = false;
-	private static int x, y, width, height;
-	private static int dx = Main.width / 2 - width / 2;
-	private static int dy = Main.height / 2 - height / 2;
-	private int blockSize, mapWidth, maxJumpHeight,
-			currentJumpHeight = 0;
 	private static double zSize;
 
 	public static int[] points = new int[12];
@@ -27,10 +22,9 @@ public class Player {
 	public Player(Characters character) {
 		playerSprite = character.getCharacterImage();
 		zSize = Load.mapScale;
+		System.out.println(character.getWidth());
 		width = (int) (character.getWidth() * zSize);
 		height = (int) (character.getHeight() * zSize);
-		dx = Main.width / 2 - width / 2;
-		dy = Main.height / 2 - height / 2;
 		y = 0;
 		x = 0;
 
@@ -38,16 +32,15 @@ public class Player {
 		attributes[1] = new Shards();
 		attributes[2] = new Dig();
 		attributes[3] = new Shield();
-		
 
 		int spawnBlockX = Load.spawnBlockX;
 		int spawnBlockY = Load.spawnBlockY;
 
 		if (spawnBlockX * BlockRender.blockSize < Main.width / 2) {
-			dx = spawnBlockX * BlockRender.blockSize;
+			x = spawnBlockX * BlockRender.blockSize;
 		}
 		if (spawnBlockY * BlockRender.blockSize < Main.height / 2) {
-			dy = spawnBlockY * BlockRender.blockSize + 1;
+			y = spawnBlockY * BlockRender.blockSize + 1;
 		}
 
 		for (int i = 0; i < attributeActivated.length - 1; i++)
@@ -61,41 +54,44 @@ public class Player {
 		blockSize = (int) (16 * zSize);
 		mapWidth = Load.chunkWidth * Load.mapWidth;
 		maxJumpHeight = (int) (blockSize * 2 / zSize);
-		
+		int cX = 0;
+		int cY = 0;
 
-		points[0] = (int) ((-x + 2 + dx) / blockSize)
-				+ (int) ((-y + dy) / blockSize) * mapWidth;
-		points[1] = (int) ((-x + width - 2 + dx) / blockSize)
-				+ (int) ((-y + dy) / blockSize) * mapWidth;
-		points[2] = (int) ((-x + 2 + dx) / blockSize)
-				+ (int) ((-y + dy + height + 1) / blockSize) * mapWidth;
-		points[3] = (int) ((-x + width - 2 + dx) / blockSize)
-				+ (int) ((-y + dy + height + 1) / blockSize) * mapWidth;
-		points[4] = (int) ((-x + dx - 1) / blockSize)
-				+ (int) ((-y + 1 + dy) / blockSize) * mapWidth;
-		points[5] = (int) ((-x + dx - 1) / blockSize)
-				+ (int) ((-y + height / 2 + dy) / blockSize) * mapWidth;
-		points[6] = (int) ((-x + dx - 1) / blockSize)
-				+ (int) ((-y + height + dy) / blockSize) * mapWidth;
-		points[7] = (int) ((-x + dx + 1 + width) / blockSize)
-				+ (int) ((-y + dy + 1) / blockSize) * mapWidth;
-		points[8] = (int) ((-x + dx + 1 + width) / blockSize)
-				+ (int) ((-y + +height / 2 + dy) / blockSize) * mapWidth;
-		points[9] = (int) ((-x + dx + 1 + width) / blockSize)
-				+ (int) ((-y + +height + dy) / blockSize) * mapWidth;
-		points[10] = (int) ((-x + width / 2 + dx) / blockSize)
-				+ (int) ((-y + dy + height + 1) / blockSize) * mapWidth;
+		points[0] = (int) ((x + 2 + cX) / blockSize)
+				+ (int) ((y + cY) / blockSize) * mapWidth;
+		points[1] = (int) ((x + width - 2 + cX) / blockSize)
+				+ (int) ((y + cY) / blockSize) * mapWidth;
+		points[2] = (int) ((x + 2 + cX) / blockSize)
+				+ (int) ((y + cY + height + 1) / blockSize) * mapWidth;
+		points[3] = (int) ((x + width - 2 + cX) / blockSize)
+				+ (int) ((y + cY + height + 1) / blockSize) * mapWidth;
+		points[4] = (int) ((x + cX - 1) / blockSize)
+				+ (int) ((y + 1 + cY) / blockSize) * mapWidth;
+		points[5] = (int) ((x + cX - 1) / blockSize)
+				+ (int) ((y + height / 2 + cY) / blockSize) * mapWidth;
+		points[6] = (int) ((x + cX - 1) / blockSize)
+				+ (int) ((y + height + cY) / blockSize) * mapWidth;
+		points[7] = (int) ((x + cX + 1 + width) / blockSize)
+				+ (int) ((y + cY + 1) / blockSize) * mapWidth;
+		points[8] = (int) ((x + cX + 1 + width) / blockSize)
+				+ (int) ((y + +height / 2 + cY) / blockSize) * mapWidth;
+		points[9] = (int) ((x + cX + 1 + width) / blockSize)
+				+ (int) ((y + +height + cY) / blockSize) * mapWidth;
+		points[10] = (int) ((x + width / 2 + cX) / blockSize)
+				+ (int) ((y + cY + height + 1) / blockSize) * mapWidth;
+		
+		
+		horisontalVelocity = zSize;
+		
+		
+		
+		
 
 		if (Block.getBackgroundBlock(Block.getBlockById(Load.Block[points[2]]))
 				&& Block.getBackgroundBlock(Block
 						.getBlockById(Load.Block[points[3]]))) {
 			if (!kl.jump)
-				if (y > -blockSize * mapWidth + Main.height * zSize
-						+ Main.height / (zSize + zSize / 2) - 16 / zSize * 1.5
-						&& dy > Main.height / 2 - height)
-					y -= zSize;
-				else
-					dy += zSize;
+				y += horisontalVelocity;
 			onPlatform = false;
 
 		} else {
@@ -108,10 +104,7 @@ public class Player {
 					.getBlockById(Load.Block[points[0]]))
 					&& Block.getBackgroundBlock(Block
 							.getBlockById(Load.Block[points[1]])))
-				if (y < 0 && dy < Main.height / 2 - height)
-					y += zSize;
-				else
-					dy -= zSize;
+				y -= horisontalVelocity;
 			else {
 				kl.jump = false;
 				currentJumpHeight = 0;
@@ -122,45 +115,30 @@ public class Player {
 			}
 		}
 
-		if (x < 0 && !(dx > Main.width / 2 - width / 2)) {
-			if (kl.left
-					&& Block.getBackgroundBlock(Block
-							.getBlockById(Load.Block[points[4]]))
-					&& Block.getBackgroundBlock(Block
-							.getBlockById(Load.Block[points[5]]))
-					&& Block.getBackgroundBlock(Block
-							.getBlockById(Load.Block[points[6]])))
-				x += zSize;
-		} else {
-			if (kl.left
-					&& Block.getBackgroundBlock(Block
-							.getBlockById(Load.Block[points[4]]))
-					&& Block.getBackgroundBlock(Block
-							.getBlockById(Load.Block[points[5]]))
-					&& Block.getBackgroundBlock(Block
-							.getBlockById(Load.Block[points[6]])) && dx > 0)
-				dx -= zSize;
+		if (kl.left
+				&& Block.getBackgroundBlock(Block
+						.getBlockById(Load.Block[points[4]]))
+				&& Block.getBackgroundBlock(Block
+						.getBlockById(Load.Block[points[5]]))
+				&& Block.getBackgroundBlock(Block
+						.getBlockById(Load.Block[points[6]]))) {
+			x -= verticalVelocity;
 		}
-		if (x > -blockSize * mapWidth + Main.width - width / 2
-				&& !(dx < Main.width / 2 - width / 2)) {
-			if (kl.right
-					&& Block.getBackgroundBlock(Block
-							.getBlockById(Load.Block[points[7]]))
-					&& Block.getBackgroundBlock(Block
-							.getBlockById(Load.Block[points[8]]))
-					&& Block.getBackgroundBlock(Block
-							.getBlockById(Load.Block[points[9]])))
-				x -= zSize;
-		} else {
-			if (kl.right
-					&& Block.getBackgroundBlock(Block
-							.getBlockById(Load.Block[points[7]]))
-					&& Block.getBackgroundBlock(Block
-							.getBlockById(Load.Block[points[8]]))
-					&& Block.getBackgroundBlock(Block
-							.getBlockById(Load.Block[points[9]]))
-					&& dx < Main.width - width - width / 2)
-				dx += zSize;
+
+		if (kl.right
+				&& Block.getBackgroundBlock(Block
+						.getBlockById(Load.Block[points[7]]))
+				&& Block.getBackgroundBlock(Block
+						.getBlockById(Load.Block[points[8]]))
+				&& Block.getBackgroundBlock(Block
+						.getBlockById(Load.Block[points[9]]))) {
+			x += verticalVelocity;
+		}
+		
+		if(!kl.right && !kl.left && verticalVelocity > zSize){
+			verticalVelocity -= .02;
+		}else if (verticalVelocity < zSize*2){
+			verticalVelocity += .02;
 		}
 
 		for (int i = 0; i < attributeActivated.length - 1; i++)
@@ -175,28 +153,22 @@ public class Player {
 
 	public void draw(Graphics2D g) {
 		// g.rotate(90.0);
-		g.drawImage(playerSprite, dx, dy, width, height, null);
-		g.drawRect(dx, dy, width, height);
+		g.drawImage(playerSprite, (int) (x + Camera.getX()),
+				(int) (y + Camera.getY()), width, height, null);
+		g.drawRect((int) (x + Camera.getX()), (int) (y + Camera.getY()), width,
+				height);
 
 		for (int i = 0; i < attributeActivated.length - 1; i++)
 			if (attributeActivated[i])
 				attributes[i].draw(g);
 	}
 
-	public static int getX() {
+	public static double getX() {
 		return x;
 	}
 
-	public static int getY() {
+	public static double getY() {
 		return y;
-	}
-
-	public static int getDrawX() {
-		return dx;
-	}
-
-	public static int getDrawY() {
-		return dy;
 	}
 
 	public static void setX(int x) {
@@ -214,8 +186,6 @@ public class Player {
 	public static void addY(int y) {
 		if (Player.y < 0)
 			Player.y += y;
-		else
-			Player.dy -= y;
 	}
 
 	public static boolean getWithinProximity(int px, int py) {

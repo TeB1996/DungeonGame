@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.TeB.Blocks.Block;
+import com.TeB.DungeonGame.Camera;
 import com.TeB.DungeonGame.Load;
 import com.TeB.DungeonGame.Player;
 import com.TeB.DungeonGame.keyListener;
@@ -38,24 +39,22 @@ public class JumpBoost extends Attributes {
 						.getBlockById(Load.Block[Player.points[2]]))
 				&& !Block.getBackgroundBlock(Block
 						.getBlockById(Load.Block[Player.points[3]]))) {
-			dx = Player.getDrawX();
-			dy = (int) (Player.getDrawY() - 3.5 * Load.mapScale);
-			px = Player.getX();
-			py = Player.getY();
+			px = (int) Player.getX();
+			py = (int) Player.getY();
 			activated = true;
 		} else if (!activated) {
 			Player.attributeActivated[0] = false;
 			Player.attributes[0] = new JumpBoost();
 		} else if (activated) {
 
-			int pgX = Player.getX();
+			int pgX = (int) Player.getX();
 
 			if (px != pgX) {
 				dx += pgX - px;
 				px = pgX;
 			}
 
-			int pgY = Player.getY();
+			int pgY = (int) Player.getY();
 
 			if (py != pgY) {
 				dy += pgY - py;
@@ -73,15 +72,7 @@ public class JumpBoost extends Attributes {
 				Player.addY((int)Load.mapScale);
 				Player.onPlatform = true;
 			}
-			
-			if(dx > Player.getDrawX() && dx + width < Player.getDrawX()){
-				Player.onPlatform = false;
-				Player.attributeActivated[0] = false;
-				Player.attributes[0] = new JumpBoost();
-			}else{
-				Player.onPlatform = true;
-			}
-
+		
 
 		}
 
@@ -93,10 +84,8 @@ public class JumpBoost extends Attributes {
 						.getBlockById(Load.Block[Player.points[2]]))
 				&& !Block.getBackgroundBlock(Block
 						.getBlockById(Load.Block[Player.points[3]]))) {
-			dx = Player.getDrawX();
-			dy = (int) (Player.getDrawY() - 3.5 * Load.mapScale);
-			px = Player.getX();
-			py = Player.getY();
+			dx = Camera.getX();
+			dy = (int) (Camera.getY() - 3.5 * Load.mapScale);
 			activated = true;
 		}
 		g.drawImage(jumpShard.getScaledInstance(width, (int) (1 + riseAmount), 0),
