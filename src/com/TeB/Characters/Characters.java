@@ -2,6 +2,8 @@ package com.TeB.Characters;
 
 import java.awt.Image;
 
+import com.TeB.DungeonGame.Load;
+
 public class Characters {
 	
 	protected Image CharacterImage;
@@ -16,11 +18,12 @@ public class Characters {
 	}
 	
 	public int getWidth(){
-		return width;
+		return (int) (width*Load.mapScale);
 	}
 	
 	public int getHeight(){
-		return height;
+		System.out.println(Load.mapScale + " " + height  + " " + (int)(height*Load.mapScale));
+		return (int) (height*Load.mapScale);
 	}
 
 }

@@ -40,7 +40,7 @@ public class keyListener implements KeyListener {
 			left = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_W) {
-			if(Player.onPlatform)jump = true;
+			if(Screen.p.onPlatform)jump = true;
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_P) {
@@ -62,16 +62,16 @@ public class keyListener implements KeyListener {
 			use = true;
 		}
 		if(e.getKeyCode() == KeyEvent.VK_UP){
-			Player.attributeActivated[0] = true;
+			Screen.p.attributeActivated[0] = true;
 		}
 		if(e.getKeyCode() == KeyEvent.VK_LEFT){
-			Player.attributeActivated[1] = true;
+			Screen.p.attributeActivated[1] = true;
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			Player.attributeActivated[1] = true;
+			Screen.p.attributeActivated[1] = true;
 		}
 		if(e.getKeyCode() == KeyEvent.VK_DOWN){
-			Player.attributeActivated[2] = true;
+			Screen.p.attributeActivated[2] = true;
 		}
 
 	}

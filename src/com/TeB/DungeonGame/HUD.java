@@ -25,9 +25,9 @@ public class HUD {
 		g.fillRect(Main.width - 70, Main.height - 170, 50, 50);
 		g.fillRect(Main.width - 70, Main.height - 240, 50, 50);
 		
-		g.drawImage(Player.attributes[0].getAttributeImage(), Main.width - 70, Main.height - 240, 50, 50,null);
-		g.drawImage(Player.attributes[1].getAttributeImage(), Main.width - 70, Main.height - 170, 50, 50,null);
-		g.drawImage(Player.attributes[2].getAttributeImage(), Main.width - 70, Main.height - 100, 50, 50,null);
+		g.drawImage(Screen.p.attributes[0].getAttributeImage(), Main.width - 70, Main.height - 240, 50, 50,null);
+		g.drawImage(Screen.p.attributes[1].getAttributeImage(), Main.width - 70, Main.height - 170, 50, 50,null);
+		g.drawImage(Screen.p.attributes[2].getAttributeImage(), Main.width - 70, Main.height - 100, 50, 50,null);
 		//System.out.println(Player.attributes[2].getAttributeImage());
 		
 

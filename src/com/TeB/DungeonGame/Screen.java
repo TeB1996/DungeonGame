@@ -15,7 +15,7 @@ public class Screen extends JPanel implements Runnable {
 
 	public Map m;
 	public Replay replay;
-	public Player p;
+	public static Player p;
 	public HUD h;
 	public Camera c;
 	public keyListener kl;

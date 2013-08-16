@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 public class Entity {
 	
-	protected static double x,y, verticalVelocity, horisontalVelocity;
+	protected  double x,y, verticalVelocity, horisontalVelocity;
 	protected int width, height;
 	protected int blockSize, mapWidth, maxJumpHeight, currentJumpHeight = 0;
 	

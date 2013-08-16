@@ -10,6 +10,8 @@ public class Save implements Runnable {
 	public Save(String map) {
 
 		int a = 0;
+		
+		map = "Map3";
 
 		IconLoop.start();
 

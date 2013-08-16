@@ -15,21 +15,34 @@ public class Camera {
 	}
 
 	public void update(int delta) {
-		int pXtemp = (int) Player.getX();
-		int pYtemp = (int) Player.getY();
+		int pXtemp = (int) Screen.p.getX();
+		int pYtemp = (int) Screen.p.getY();
 		int mapWidth = (int) (-Load.chunkWidth * Load.mapWidth
 				* (Load.mapScale * 16) + Main.width);
 		int mapHeight = (int) (-Load.chunkHeight * Load.mapHeight
 				* (Load.mapScale * 16) + Main.height);
 
 		if (focus.equalsIgnoreCase("PLAYER")) {
-			if (x >= mapWidth && pXtemp >= mainWidth && pX != pXtemp) {
-				int addX = pX - pXtemp;
-				x += addX;
-				pX = pXtemp;
+			if (pXtemp >= mainWidth && pX != pXtemp) {
+				if (x >= mapWidth) {
+					int addX = pX - pXtemp;
+					x += addX;
+					pX = pXtemp;
+				}
+				if (x <= mapWidth) {
+					int addX = pX - pXtemp;
+					if (addX > 0 && x < mainWidth && x > mainWidth + 10)
+						x += addX;
+					pX = pXtemp;
+				}
 			} else {
+				// if(!(x >= mapWidth))System.out.println("first");
+				// if( !(pXtemp >= mainWidth))System.out.println("second");
+				// if(!(pX != pXtemp))System.out.println("third");
+
 				pX = pXtemp;
 			}
+
 			if (y >= mapHeight && pYtemp >= mainHeight && pY != pYtemp) {
 				int addY = pY - pYtemp;
 				y += addY;
@@ -37,6 +50,7 @@ public class Camera {
 			} else {
 				pY = pYtemp;
 			}
+
 		}
 	}
 

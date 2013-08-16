@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 import com.TeB.Blocks.Block;
 import com.TeB.DungeonGame.Camera;
 import com.TeB.DungeonGame.Load;
-import com.TeB.DungeonGame.Player;
+import com.TeB.DungeonGame.Screen;
 import com.TeB.DungeonGame.keyListener;
 
 public class JumpBoost extends Attributes {
@@ -36,25 +36,25 @@ public class JumpBoost extends Attributes {
 	public void update(int delta) {
 		if (!activated
 				&& !Block.getBackgroundBlock(Block
-						.getBlockById(Load.Block[Player.points[2]]))
+						.getBlockById(Load.Block[Screen.p.points[2]]))
 				&& !Block.getBackgroundBlock(Block
-						.getBlockById(Load.Block[Player.points[3]]))) {
-			px = (int) Player.getX();
-			py = (int) Player.getY();
+						.getBlockById(Load.Block[Screen.p.points[3]]))) {
+			px = (int) Screen.p.getX();
+			py = (int) Screen.p.getY();
 			activated = true;
 		} else if (!activated) {
-			Player.attributeActivated[0] = false;
-			Player.attributes[0] = new JumpBoost();
+			Screen.p.attributeActivated[0] = false;
+			Screen.p.attributes[0] = new JumpBoost();
 		} else if (activated) {
 
-			int pgX = (int) Player.getX();
+			int pgX = (int) Screen.p.getX();
 
 			if (px != pgX) {
 				dx += pgX - px;
 				px = pgX;
 			}
 
-			int pgY = (int) Player.getY();
+			int pgY = (int) Screen.p.getY();
 
 			if (py != pgY) {
 				dy += pgY - py;
@@ -63,14 +63,14 @@ public class JumpBoost extends Attributes {
 
 			if (riseAmount < height) {
 				riseAmount += 1;
-				if(riseAmount != 0 && riseAmount != 63)Player.addY((int)Load.mapScale + 1);
+				if(riseAmount != 0 && riseAmount != 63)Screen.p.addY((int)Load.mapScale + 1);
 			}
 			if (keyListener.jump && riseAmount == height) {
-				Player.attributeActivated[0] = false;
-				Player.attributes[0] = new JumpBoost();
+				Screen.p.attributeActivated[0] = false;
+				Screen.p.attributes[0] = new JumpBoost();
 			} else if (!keyListener.jump && riseAmount == height) {
-				Player.addY((int)Load.mapScale);
-				Player.onPlatform = true;
+				Screen.p.addY((int)Load.mapScale);
+				Screen.p.onPlatform = true;
 			}
 		
 
@@ -81,9 +81,9 @@ public class JumpBoost extends Attributes {
 	public void draw(Graphics2D g) {
 		if (!activated
 				&& !Block.getBackgroundBlock(Block
-						.getBlockById(Load.Block[Player.points[2]]))
+						.getBlockById(Load.Block[Screen.p.points[2]]))
 				&& !Block.getBackgroundBlock(Block
-						.getBlockById(Load.Block[Player.points[3]]))) {
+						.getBlockById(Load.Block[Screen.p.points[3]]))) {
 			dx = Camera.getX();
 			dy = (int) (Camera.getY() - 3.5 * Load.mapScale);
 			activated = true;

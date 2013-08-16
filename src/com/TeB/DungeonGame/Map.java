@@ -24,7 +24,7 @@ public class Map {
 		new Load (newMap);
 		MapInUse = newMap;
 		b = new BlockRender(MapInUse);
-		new Player(new Crystalith());
+		Screen.p.changeMap(new Crystalith());
 	}
 
 	public String getMap() {
