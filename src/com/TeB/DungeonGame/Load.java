@@ -6,18 +6,18 @@ import java.util.Scanner;
 
 public class Load {
 
-	public static int Block[];
-	public static int BlockLight[];
-	public static String Sign[] = new String[100];
-	public static int SignBlock[] = {0};
-	public static int mapWidth = 1;
-	public static int mapHeight = 1;
-	public static double mapScale = 1;
-	public static int spawnBlockX = 4;
-	public static int spawnBlockY = 4;
-	public static int chunkWidth = 998/16, chunkHeight = ((998/12)*9)/16;
-	public static boolean mapUpdate = false;
-	public static String mapBG = "air";
+	public  int Block[];
+	public  int BlockLight[];
+	public  String Sign[] = new String[100];
+	public  int SignBlock[] = {0};
+	public  int mapWidth = 1;
+	public  int mapHeight = 1;
+	public  double mapScale = 1;
+	public  int spawnBlockX = 4;
+	public  int spawnBlockY = 4;
+	public  int chunkWidth = 998/16, chunkHeight = ((998/12)*9)/16;
+	public  boolean mapUpdate = false;
+	public  String mapBG = "air";
 
 	public Load(String map) {
 		try {
@@ -76,6 +76,15 @@ public class Load {
 		}
 
 		// System.out.println(SignBlock[0]);
+	}
+	
+	public void setBlockValue(int newBlock, int position){
+		Block[position] = newBlock;
+		Map.b.reDraw = true;
+	}
+	
+	public com.TeB.Blocks.Block getBlock(int position){
+		return com.TeB.Blocks.Block.getBlockById(Block[position]);
 	}
 
 }

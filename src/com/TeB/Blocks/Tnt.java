@@ -1,7 +1,7 @@
 package com.TeB.Blocks;
 
 import com.TeB.DungeonGame.Explosion;
-import com.TeB.DungeonGame.Load;
+import com.TeB.DungeonGame.Map;
 
 public class Tnt extends Block{
 	
@@ -12,7 +12,7 @@ public class Tnt extends Block{
 	
 	
 	public  void placeUs(int BlockPlacementId){
-		Load.Block[BlockPlacementId] = 6;
+		Map.b.load.setBlockValue(6, BlockPlacementId);
 		new Explosion(BlockPlacementId);
 	}
 	

@@ -18,15 +18,15 @@ public class Save implements Runnable {
 		try {
 			Formatter f = new Formatter("maps/" + map + "/" + map);
 
-			for (int i = 0; i < Load.Block.length; i++) {
+			for (int i = 0; i < Map.b.load.Block.length; i++) {
 				a++;
 				if (a != 1) f.format("%s", " ");
-				if (a == 62*Load.mapWidth) {
+				if (a == 62*Map.b.load.mapWidth) {
 					a = 0;
-					f.format("%s", Load.Block[i]);
+					f.format("%s", Map.b.load.Block[i]);
 					f.format("\n", "");
 				} else {
-					f.format("%s", Load.Block[i]);
+					f.format("%s", Map.b.load.Block[i]);
 				}
 			}
 			f.close();

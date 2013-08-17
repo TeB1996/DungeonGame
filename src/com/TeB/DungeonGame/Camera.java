@@ -17,10 +17,10 @@ public class Camera {
 	public void update(int delta) {
 		int pXtemp = (int) Screen.p.getX();
 		int pYtemp = (int) Screen.p.getY();
-		int mapWidth = (int) (-Load.chunkWidth * Load.mapWidth
-				* (Load.mapScale * 16) + Main.width);
-		int mapHeight = (int) (-Load.chunkHeight * Load.mapHeight
-				* (Load.mapScale * 16) + Main.height);
+		int mapWidth = (int) (- Map.b.load.chunkWidth *  Map.b.load.mapWidth
+				* ( Map.b.load.mapScale * 16) + Main.width);
+		int mapHeight = (int) (- Map.b.load.chunkHeight *  Map.b.load.mapHeight
+				* ( Map.b.load.mapScale * 16) + Main.height);
 
 		if (focus.equalsIgnoreCase("PLAYER")) {
 			if (pXtemp >= mainWidth && pX != pXtemp) {

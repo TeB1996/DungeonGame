@@ -2,7 +2,7 @@ package com.TeB.Characters;
 
 import java.awt.Image;
 
-import com.TeB.DungeonGame.Load;
+import com.TeB.DungeonGame.Map;
 
 public class Characters {
 	
@@ -18,12 +18,12 @@ public class Characters {
 	}
 	
 	public int getWidth(){
-		return (int) (width*Load.mapScale);
+		return (int) (width*Map.b.load.mapScale);
 	}
 	
 	public int getHeight(){
-		System.out.println(Load.mapScale + " " + height  + " " + (int)(height*Load.mapScale));
-		return (int) (height*Load.mapScale);
+		System.out.println(Map.b.load.mapScale + " " + height  + " " + (int)(height*Map.b.load.mapScale));
+		return (int) (height*Map.b.load.mapScale);
 	}
 
 }

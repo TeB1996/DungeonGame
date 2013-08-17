@@ -6,7 +6,7 @@ import com.TeB.Characters.Crystalith;
 
 public class Map {
 
-	private BlockRender b;
+	public static BlockRender b;
 	public static boolean playerHasRun = false;
 
 	public static String MapInUse = "Map1";

@@ -13,7 +13,7 @@ public class Screen extends JPanel implements Runnable {
 
 	public Thread thread = new Thread(this);
 
-	public Map m;
+	public static Map map;
 	public Replay replay;
 	public static Player p;
 	public HUD h;
@@ -25,7 +25,7 @@ public class Screen extends JPanel implements Runnable {
 	// bug
 
 	public Screen() {
-		m = new Map();
+		map = new Map();
 		replay = new Replay();
 		p = new Player(new Crystalith());
 		h = new HUD();
@@ -38,7 +38,7 @@ public class Screen extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		BufferedImage image = new BufferedImage(Main.width, Main.height, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = (Graphics2D) image.getGraphics();
-		m.draw(g2);
+		map.draw(g2);
 		p.draw(g2);
 		h.draw(g2);
 		g.drawImage(image, 0, 0, getWidth(), getHeight(),null);

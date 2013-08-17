@@ -26,13 +26,13 @@ public class mouseListener implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		int blockSize = BlockRender.blockSize;
-		int mapWidth = BlockRender.mapWidth;
+		int blockSize = Map.b.blockSize;
+		int mapWidth = Map.b.mapWidth;
 
 		int BlockId =  ((x - 10 - Camera.getX()) / blockSize)
 				+ ( ((y - 30  - Camera.getY()) / blockSize) * mapWidth);
 		
-		Block block = Block.getBlockById(Load.Block[BlockId]);
+		Block block = Block.getBlockById( Map.b.load.Block[BlockId]);
 		if (e.getButton() == MouseEvent.BUTTON3) {
 			if (Block.hasClickUse(block)) {
 				Block.activateClickUse(block, BlockId);

@@ -1,6 +1,6 @@
 package com.TeB.Blocks;
 
-import com.TeB.DungeonGame.Load;
+import com.TeB.DungeonGame.Map;
 
 public class Sign extends Block{
 	
@@ -18,9 +18,9 @@ public class Sign extends Block{
 	
 	public void ClickUse(int BlockId){
 		
-		for(int i= 0; i < Load.SignBlock.length;i++){
-			if(Load.SignBlock[i] == BlockId){
-				System.out.println(Load.Sign[i]);
+		for(int i= 0; i < Map.b.load.SignBlock.length;i++){
+			if(Map.b.load.SignBlock[i] == BlockId){
+				System.out.println(Map.b.load.Sign[i]);
 			}
 			
 		}

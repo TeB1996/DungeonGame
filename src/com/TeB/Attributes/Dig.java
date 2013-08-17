@@ -6,8 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.TeB.Blocks.Block;
-import com.TeB.DungeonGame.BlockRender;
-import com.TeB.DungeonGame.Load;
+import com.TeB.DungeonGame.Map;
 import com.TeB.DungeonGame.Screen;
 
 public class Dig extends Attributes{
@@ -24,13 +23,11 @@ public class Dig extends Attributes{
 	
 	public void update(int delta){
 		System.out.println("Digging");
-		int mapWidth = BlockRender.mapWidth;
-		
-		if(Block.getResistands(Block.getBlockById(Load.Block[Screen.p.points[2]])) < 6)Load.Block[Screen.p.points[2]] = 0;
-		if(Block.getResistands(Block.getBlockById(Load.Block[Screen.p.points[3]])) < 6)Load.Block[Screen.p.points[3]] = 0;
-
-		if(Block.getResistands(Block.getBlockById(Load.Block[Screen.p.points[2] + mapWidth])) < 6)Load.Block[Screen.p.points[2] + mapWidth] = 0;
-		if(Block.getResistands(Block.getBlockById(Load.Block[Screen.p.points[3] + mapWidth])) < 6)Load.Block[Screen.p.points[3] + mapWidth] = 0;
+		int mapWidth = Map.b.mapWidth;
+		if(Block.getResistands( Map.b.load.getBlock(Screen.p.points[2])) < 6) Map.b.load.setBlockValue(0, Screen.p.points[2]);
+		if(Block.getResistands(Map.b.load.getBlock(Screen.p.points[3])) < 6) Map.b.load.setBlockValue(0, Screen.p.points[3]);
+		if(Block.getResistands( Map.b.load.getBlock(Screen.p.points[2] + mapWidth)) < 6) Map.b.load.setBlockValue(0, Screen.p.points[2] + mapWidth);
+		if(Block.getResistands( Map.b.load.getBlock(Screen.p.points[3] + mapWidth)) < 6) Map.b.load.setBlockValue(0,Screen.p.points[3] + mapWidth);
 		
 		//Load.Block[Screen.p.points[2] + mapWidth*2] = 0;
 		//Load.Block[Screen.p.points[3] + mapWidth*2] = 0;
