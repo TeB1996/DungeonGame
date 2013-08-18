@@ -16,6 +16,7 @@ public class Screen extends JPanel implements Runnable {
 	public static Map map;
 	public Replay replay;
 	public static Player p;
+	public static Lighting light;
 	public HUD h;
 	public Camera c;
 	public keyListener kl;
@@ -28,9 +29,11 @@ public class Screen extends JPanel implements Runnable {
 		map = new Map();
 		replay = new Replay();
 		p = new Player(new Crystalith());
+		light = new Lighting();
 		h = new HUD();
 		kl = new keyListener();
 		c = new Camera();
+		setSize(Main.width, Main.height);
 		new ImageImport();
 		thread.start();
 	}
@@ -40,6 +43,7 @@ public class Screen extends JPanel implements Runnable {
 		Graphics2D g2 = (Graphics2D) image.getGraphics();
 		map.draw(g2);
 		p.draw(g2);
+		light.draw(g2);
 		h.draw(g2);
 		g.drawImage(image, 0, 0, getWidth(), getHeight(),null);
 	}
