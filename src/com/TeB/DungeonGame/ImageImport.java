@@ -19,6 +19,7 @@ public class ImageImport {
 	public Image sign;
 	public Image chest;
 	public static Image player;
+	public static Image lightTest;
 	
 	public Image airBg;
 	
@@ -42,7 +43,7 @@ public class ImageImport {
 			sign = ImageIO.read(new File("blocks/sign.png"));
 			chest = ImageIO.read(new File("blocks/chest.png"));
 			player = ImageIO.read(new File("chars/heatblast.png"));
-		
+			lightTest =  ImageIO.read(new File("random/light.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
