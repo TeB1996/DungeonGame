@@ -56,7 +56,7 @@ public class Lighting {
 			}
 			
 			
-			reDraw = true;
+			reDraw = false;
 		}
 		
 		

@@ -12,7 +12,7 @@ public class HeatBlast extends Characters{
 			CharacterImage = ImageIO.read(new File("Chars/heatblast.png"));
 			width = 6;
 			height = 32;
-			
+			health = 1;
 			
 			
 		} catch (IOException e) {

@@ -13,6 +13,7 @@ public class Crystalith extends Characters{
 			CharacterImage = ImageIO.read(new File("Chars/player.png"));
 			width = 12;
 			height = 28;
+			health = 1.5;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -30,6 +30,16 @@ public class Save implements Runnable {
 				}
 			}
 			f.close();
+			
+			Formatter fInfo = new Formatter("maps/" + map + "/" + map + "Info");
+			
+			fInfo.format("" + Map.b.load.chunkWidth + " ", 0);
+			fInfo.format("" + Map.b.load.chunkHeight + " ", 0);
+			fInfo.format("" + Map.b.load.mapScale + " ", 0);
+			fInfo.format("" + Map.b.load.spawnBlockX + " ", 0);
+			fInfo.format("" + Map.b.load.spawnBlockY + " ", 0);
+			
+			fInfo.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -41,10 +51,10 @@ public class Save implements Runnable {
 
 
 		for (int i = 0; i <= 2; i++) {
-			HUD.saveIcon = true;
+			Screen.hud.saveIcon = true;
 			try {
 				Thread.sleep(1000);
-				HUD.saveIcon = false;
+				Screen.hud.saveIcon = false;
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();

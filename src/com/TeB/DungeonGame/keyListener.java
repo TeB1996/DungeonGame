@@ -3,6 +3,8 @@ package com.TeB.DungeonGame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import com.TeB.MapEditor.CreateMap;
+
 public class keyListener implements KeyListener {
 
 	public static boolean right = false, left = false, jump = false, place = false, running = false, use = false;
@@ -72,6 +74,18 @@ public class keyListener implements KeyListener {
 		}
 		if(e.getKeyCode() == KeyEvent.VK_DOWN){
 			Screen.p.attributeActivated[2] = true;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_F1){
+			CreateMap cm = new CreateMap();
+			
+			cm.openOptionsMenu();
+			cm.makeFiles("map5", 5, 5, 1.5, 4, 4);
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_F2){
+			Screen.hud.h.addHealth(-10);
+			System.out.println(Screen.hud.h.getHealt());
 		}
 
 	}
